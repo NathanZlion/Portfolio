@@ -78,8 +78,6 @@ function NavBar({handleCloseModal, handleShowModal}) {
 
             <Nav.Item>
               <Nav.Link
-                as={Link}
-                // to="#"
                 onClick={() => {
                   handleShowModal();
                 }}
