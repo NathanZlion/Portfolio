@@ -1,15 +1,14 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Particle from "../Particle";
-import Github from "./Github";
-import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/about.png";
-import Toolstack from "./Toolstack";
+import { FaLink } from "react-icons/fa6";
+import { Link } from "react-scroll";
 
 function About() {
   return (
-    <Container fluid className="about-section">
+    <Container fluid className="about-section" name="about">
       <Particle />
       <Container>
         <Row style={{ justifyContent: "center", padding: "10px" }}>
@@ -21,8 +20,12 @@ function About() {
               paddingBottom: "50px",
             }}
           >
+
             <h1 style={{ fontSize: "2.1em", paddingBottom: "20px" }}>
-              Know Who <strong className="purple">I'M</strong>
+              <Link to="about" smooth={true} activeClass="active" offset={50} duration={500} spy={true} >
+                <FaLink />
+              </Link>
+              &nbsp; Know Who <strong className="purple">I'M</strong>
             </h1>
             <Aboutcard />
           </Col>
@@ -34,18 +37,18 @@ function About() {
             <img src={laptopImg} alt="about" className="img-fluid" />
           </Col>
         </Row>
-        <h1 className="project-heading">
+        {/* <h1 className="project-heading">
           Professional <strong className="purple">Skillset </strong>
-        </h1>
+        </h1> */}
 
-        <Techstack />
+        {/* <Techstack /> */}
 
-        <h1 className="project-heading">
+        {/* <h1 className="project-heading">
           <strong className="purple">Tools</strong> I use
-        </h1>
-        <Toolstack />
+        </h1> */}
+        {/* <Toolstack /> */}
 
-        <Github />
+        {/* <Github /> */}
       </Container>
     </Container>
   );

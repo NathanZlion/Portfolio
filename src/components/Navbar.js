@@ -3,12 +3,13 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import logo from "../Assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 import {
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
 } from "react-icons/ai";
+import Popup from "reactjs-popup";
 
 import { CgFileDocument } from "react-icons/cg";
 
@@ -25,6 +26,13 @@ function NavBar() {
   }
 
   window.addEventListener("scroll", scrollHandler);
+
+  const CustomButton = React.forwardRef(({ open, ...props }, ref) => (
+    <button className="button" ref={ref} {...props}>
+      Trigger - {props.open ? 'Opened' : 'Closed'}
+    </button>
+  ));
+
 
   return (
     <Navbar
@@ -50,32 +58,30 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto" defaultActiveKey="#home">
             <Nav.Item>
-              <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
+              <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} onClick={() => updateExpanded(false)} className="nav-link">
                 <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
-              </Nav.Link>
+              </Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/about"
-                onClick={() => updateExpanded(false)}
-              >
+              <Link activeClass="active" to="about" spy={true} smooth={true} offset={50} duration={500} onClick={() => updateExpanded(false)} className="nav-link">
                 <AiOutlineUser style={{ marginBottom: "2px" }} /> About
-              </Nav.Link>
+              </Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link
-                as={Link}
-                to="/project"
-                onClick={() => updateExpanded(false)}
-              >
+              <Link activeClass="active" to="skills" spy={true} smooth={true} offset={50} duration={500} onClick={() => updateExpanded(false)} className="nav-link">
+                <CgFileDocument style={{ marginBottom: "2px" }} /> Skills
+              </Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Link activeClass="active" to="projects" spy={true} smooth={true} offset={50} duration={500} onClick={() => updateExpanded(false)} className="nav-link">
                 <AiOutlineFundProjectionScreen
                   style={{ marginBottom: "2px" }}
                 />{" "}
                 Projects
-              </Nav.Link>
+              </Link>
             </Nav.Item>
 
             <Nav.Item>
@@ -87,6 +93,8 @@ function NavBar() {
                 <CgFileDocument style={{ marginBottom: "2px" }} /> Resume
               </Nav.Link>
             </Nav.Item>
+
+
           </Nav>
         </Navbar.Collapse>
       </Container>
