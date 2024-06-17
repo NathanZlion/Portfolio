@@ -523,14 +523,14 @@ button:focus {
 
 .btn-primary {
   color: #fff !important;
-  background-color: #623686 !important;
-  border-color: #623686 !important;
+  background-color: #3600fae0 !important;
+  border-color: #3f00fae0 !important;
 }
 
 .btn-primary:hover {
   color: #fff !important;
-  background-color: #6d20c5d7 !important;
-  border-color: #6d20c5d7 !important;
+  background-color: #3600face !important;
+  border-color: #3e00fa !important;
 }
 .btn:focus {
   outline: none !important;
@@ -622,18 +622,45 @@ button:focus {
 /* Resume */
 /* --------- */
 
+.modal-body {
+  padding: 0px !important;
+}
+
+.modal-content {
+  background-color: transparent !important;
+}
+
+.modal-footer {
+  background-color: transparent;
+  display: flex;
+  gap: 5px;
+}
+
+.close-modal-btn {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.download-resume-btn {
+  flex: auto;
+}
+
 .resume-section {
   position: relative !important;
-  padding-top: 110px !important;
-  padding-bottom: 30px !important;
+  padding: 0px !important;
+  margin: 0 !important;
   background-image: var(--section-background-color) !important;
   color: white !important;
+  /* outline: 10px solid red; */
+  width: fit-content;
 }
 
 .resume {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: -50px;
+  padding-bottom: 0px;
   justify-content: center;
+  /* width: max-content; */
+  /* outline: 10px solid green; */
 }
 
 .resume-left {

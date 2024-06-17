@@ -9,11 +9,10 @@ import {
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
 } from "react-icons/ai";
-import Popup from "reactjs-popup";
 
 import { CgFileDocument } from "react-icons/cg";
 
-function NavBar() {
+function NavBar({handleCloseModal, handleShowModal}) {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
 
@@ -26,13 +25,6 @@ function NavBar() {
   }
 
   window.addEventListener("scroll", scrollHandler);
-
-  const CustomButton = React.forwardRef(({ open, ...props }, ref) => (
-    <button className="button" ref={ref} {...props}>
-      Trigger - {props.open ? 'Opened' : 'Closed'}
-    </button>
-  ));
-
 
   return (
     <Navbar
@@ -87,8 +79,10 @@ function NavBar() {
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/resume"
-                onClick={() => updateExpanded(false)}
+                // to="#"
+                onClick={() => {
+                  handleShowModal();
+                }}
               >
                 <CgFileDocument style={{ marginBottom: "2px" }} /> Resume
               </Nav.Link>

@@ -17,9 +17,18 @@ import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Skills from "./components/Skills/Skills";
+import { Modal, Button } from "react-bootstrap";
+import Resume from "./components/Resume/ResumeNew"
+import pdf from "./Assets/../Assets/Soumyajit_Behera-BIT_MESRA.pdf";
+import { AiOutlineDownload } from "react-icons/ai";
 
 function App() {
   const [load, upadateLoad] = useState(true);
+  const [showModal, setShowModal] = useState(true);
+
+  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowModal(true);
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,7 +42,31 @@ function App() {
     <Router>
       <Preloader load={load} />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
-        <Navbar />
+        <Navbar handleCloseModal={handleCloseModal} handleShowModal={handleShowModal} />
+        <Modal show={showModal} onHide={handleCloseModal} style={{ height: "95vh" }}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Body>
+            <Resume />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseModal} className="close-modal-btn">
+              Close
+            </Button>
+            <Button
+              variant="primary"
+              href={pdf}
+              target="_blank"
+              style={{ maxWidth: "250px" }}
+              className="download-resume-btn"
+            >
+              <AiOutlineDownload />
+              &nbsp;Download Resume
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
 
         <Element name="home" className="element active">
           <Home />
