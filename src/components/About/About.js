@@ -25,7 +25,7 @@ function About() {
               <Link to="about" smooth={true} activeClass="active" offset={50} duration={500} spy={true} >
                 <FaLink />
               </Link>
-              &nbsp; Know Who <strong className="purple">I'M</strong>
+              &nbsp;  Who <strong className="primary-color">AM I</strong> ?
             </h1>
             <Aboutcard />
           </Col>
@@ -37,18 +37,6 @@ function About() {
             <img src={laptopImg} alt="about" className="img-fluid" />
           </Col>
         </Row>
-        {/* <h1 className="project-heading">
-          Professional <strong className="purple">Skillset </strong>
-        </h1> */}
-
-        {/* <Techstack /> */}
-
-        {/* <h1 className="project-heading">
-          <strong className="purple">Tools</strong> I use
-        </h1> */}
-        {/* <Toolstack /> */}
-
-        {/* <Github /> */}
       </Container>
     </Container>
   );
