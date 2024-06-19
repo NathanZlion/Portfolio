@@ -1,94 +1,150 @@
+
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import Slider from "react-slick";
+import { Col, Container } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
-import Particle from "../Particle";
 import leaf from "../../Assets/Projects/leaf.png";
-import emotion from "../../Assets/Projects/emotion.png";
 import editor from "../../Assets/Projects/codeEditor.png";
 import chatify from "../../Assets/Projects/chatify.png";
 import suicide from "../../Assets/Projects/suicide.png";
 import bitsOfCode from "../../Assets/Projects/blog.png";
 
-function Projects() {
+// import { baseUrl } from "./config";
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
   return (
-    <Container fluid className="project-section">
-      <Particle />
-      <Container>
-        <h1 className="project-heading">
-          My Recent <strong className="purple">Works </strong>
-        </h1>
-        <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
-        </p>
-        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={chatify}
-              isBlog={false}
-              title="Chatify"
-              description="Personal Chat Room or Workspace to share resources and hangout with friends build with react.js, Material-UI, and Firebase. Have features which allows user for realtime messaging, image sharing as well as supports reactions on messages."
-              ghLink="https://github.com/soumyajit4419/Chatify"
-              demoLink="https://chatify-49.web.app/"
-            />
-          </Col>
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "red" }}
+      onClick={onClick}
+    />
+  );
+}
 
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={bitsOfCode}
-              isBlog={false}
-              title="Bits-0f-C0de"
-              description="My personal blog page build with Next.js and Tailwind Css which takes the content from makdown files and renders it using Next.js. Supports dark mode and easy to write blogs using markdown."
-              ghLink="https://github.com/soumyajit4419/Bits-0f-C0de"
-              demoLink="https://blogs.soumya-jit.tech/"
-            />
-          </Col>
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "green" }}
+      onClick={onClick}
+    />
+  );
+}
 
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={editor}
-              isBlog={false}
-              title="Editor.io"
-              description="Online code and markdown editor build with react.js. Online Editor which supports html, css, and js code with instant view of website. Online markdown editor for building README file which supports GFM, Custom Html tags with toolbar and instant preview.Both the editor supports auto save of work using Local Storage"
-              ghLink="https://github.com/soumyajit4419/Editor.io"
-              demoLink="https://editor.soumya-jit.tech/"              
-            />
-          </Col>
+function Projects() {
 
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={leaf}
-              isBlog={false}
-              title="Plant AI"
-              description="Used the plant disease dataset from Kaggle and trained a image classifer model using 'PyTorch' framework using CNN and Transfer Learning with 38 classes of various plant leaves. The model was successfully able to detect diseased and healthy leaves of 14 unique plants. I was able to achieve an accuracy of 98% by using Resnet34 pretrained model."
-              ghLink="https://github.com/soumyajit4419/Plant_AI"
-              demoLink="https://plant49-ai.herokuapp.com/"
-            />
-          </Col>
+  // const baseUrl = "../../Assets/Projects"
 
-          <Col md={4} className="project-card">
+  const settings = {
+    dots: true,
+    dotsClass: "slick-dots slick-thumb",
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    cssEase: "linear",
+    focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 1500,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 680,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ],
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />
+
+  };
+  return (
+    <Container className="project-section">
+      {/* <h1 style={{ fontSize: "2.1em", paddingBottom: "20px", color: "white" }}>
+        <Link to="projects" smooth={true} activeClass="active" offset={50} duration={500} spy={true} >
+          <FaLink />
+        </Link>
+        &nbsp;  Projects <strong className="primary-color"> I worked on</strong> ?
+      </h1> */}
+      <div className="slider-container w-full">
+        <Slider {...settings}>
+          <Col className="project-card">
             <ProjectCard
               imgPath={suicide}
               isBlog={false}
-              title="Ai For Social Good"
-              description="Using 'Natural Launguage Processing' for the detection of suicide-related posts and user's suicide ideation in cyberspace  and thus helping in sucide prevention."
-              ghLink="https://github.com/soumyajit4419/AI_For_Social_Good"
-              // demoLink="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" <--------Please include a demo link here
+              title="Tetris in Java"
+              description="Created a classic Tetris game in Java with a sleek UI using Java Swing. Developed intricate game logic and utilized threads to handle the dynamic falling block mechanics."
+              ghLink="https://github.com/NathanZlion/tetris-in-java"
+            />
+          </Col>
+          <Col className="project-card">
+            <ProjectCard
+              imgPath={chatify}
+              isBlog={false}
+              title="Workout Warriors 💪"
+              description="
+            Workout Warrior is a mobile fitness app designed for gym members, personal trainers, and gym managers.
+                It offers a user-friendly interface and comprehensive features to access training plans, track progress,
+                and schedule workouts. With streamlined fitness management and effective communication.
+                "
+              // description="Personal Chat Room or Workspace to share resources and hangout with friends build with react.js, Material-UI, and Firebase. Have features which allows user for realtime messaging, image sharing as well as supports reactions on messages."
+              ghLink="https://github.com/Nebiyou-Daniel/Mobile-App"
+            // demoLink="https://chatify-49.web.app/"
+            />
+          </Col>
+          <Col className="project-card">
+            <ProjectCard
+              imgPath={editor}
+              isBlog={false}
+              title="Info blender"
+              description="Infoblender is a web and mobile application that allows users to get news from different sources and compare them."
+              ghLink="https://github.com/NathanZlion/Info_Blend"
+            />
+          </Col>
+          <Col className="project-card">
+            <ProjectCard
+              imgPath={leaf}
+              isBlog={false}
+              title="Hacks Datavis"
+              description="Implemented a fullstack data visualization website for the A2SV 2024 continental hackathon. Used Express.js for the backend, Appscript, and React."
+              ghLink="https://github.com/NathanZlion/hacks-datavis"
+              demoLink="https://hacks-datavis.vercel.app"
+            />
+          </Col>
+          <Col className="project-card">
+            <ProjectCard
+              imgPath={bitsOfCode}
+              isBlog={false}
+              title="Classroom Attendance System"
+              description="Used Flutter for for the Mobile app, Flask as the backend, Face recognition algorithm for recognizing detecting faces. "
+              ghLink="https://github.com/NathanZlion/Class-Attendance-System/"
             />
           </Col>
 
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={emotion}
-              isBlog={false}
-              title="Face Recognition and Emotion Detection"
-              description="Trained a CNN classifier using 'FER-2013 dataset' with Keras and tensorflow backened. The classifier sucessfully predicted the various types of emotions of human. And the highest accuracy obtained with the model was 60.1%.
-              Then used Open-CV to detect the face in an image and then pass the face to the classifer to predict the emotion of a person."
-              ghLink="https://github.com/soumyajit4419/Face_And_Emotion_Detection"
-              // demoLink="https://blogs.soumya-jit.tech/"      <--------Please include a demo link here 
-            />
-          </Col>
-        </Row>
-      </Container>
+        </Slider>
+      </div>
+
     </Container>
   );
 }
