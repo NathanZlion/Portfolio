@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
-import pdf from "../../Assets/../Assets/Soumyajit_Behera-BIT_MESRA.pdf";
+import pdf from "../../Assets/../Assets/Nathnael_Dereje_Resume.pdf";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-function ResumeNew() {
+function Resume() {
   const [width, setWidth] = useState(1200);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ function ResumeNew() {
   );
 }
 
-export default ResumeNew;
+export default Resume;
