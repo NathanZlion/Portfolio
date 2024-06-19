@@ -6,25 +6,22 @@ import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer";
 import { Element } from "react-scroll";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Skills from "./components/Skills/Skills";
 import { Modal, Button } from "react-bootstrap";
-import Resume from "./components/Resume/ResumeNew"
-import pdf from "./Assets/../Assets/Soumyajit_Behera-BIT_MESRA.pdf";
+import Resume from "./components/Resume/Resume"
+import pdf from "./Assets/../Assets/Nathnael_Dereje_Resume.pdf";
 import { AiOutlineDownload } from "react-icons/ai";
+
+// import CustomPaging from "./components/Projects/Projectnew";
 
 function App() {
   const [load, upadateLoad] = useState(true);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
@@ -56,6 +53,7 @@ function App() {
             </Button>
             <Button
               variant="primary"
+              download
               href={pdf}
               target="_blank"
               style={{ maxWidth: "250px" }}
@@ -80,7 +78,7 @@ function App() {
           <Skills />
         </Element>
 
-        <Element name="projects" className="element">
+        <Element name="projects" className="element active">
           <Projects />
         </Element>
 
