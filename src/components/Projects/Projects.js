@@ -8,6 +8,9 @@ import editor from "../../Assets/Projects/codeEditor.png";
 import chatify from "../../Assets/Projects/chatify.png";
 import suicide from "../../Assets/Projects/suicide.png";
 import bitsOfCode from "../../Assets/Projects/blog.png";
+import { FaLink } from "react-icons/fa6";
+// import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 
 // import { baseUrl } from "./config";
 
@@ -80,13 +83,13 @@ function Projects() {
 
   };
   return (
-    <Container className="project-section">
-      {/* <h1 style={{ fontSize: "2.1em", paddingBottom: "20px", color: "white" }}>
-        <Link to="projects" smooth={true} activeClass="active" offset={50} duration={500} spy={true} >
-          <FaLink />
-        </Link>
+    <Container fluid className="project-section">
+      <h1 style={{ fontSize: "2.1em", paddingBottom: "20px", color: "white" }}>
+            <Link to="projects" smooth={true} activeClass="active" offset={50} duration={500} spy={true} >
+                <FaLink />
+            </Link>
         &nbsp;  Projects <strong className="primary-color"> I worked on</strong> ?
-      </h1> */}
+      </h1>
       <div className="slider-container w-full">
         <Slider {...settings}>
           <Col className="project-card">

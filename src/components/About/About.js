@@ -8,8 +8,8 @@ import { Link } from "react-scroll";
 
 function About() {
   return (
-    <Container fluid className="about-section" name="about">
-      <Particle />
+    <Container  className="about-section" name="about">
+      {/* <Particle /> */}
       <Container>
         <Row style={{ justifyContent: "center", padding: "10px" }}>
           <Col

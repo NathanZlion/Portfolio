@@ -452,7 +452,7 @@ button:focus {
 .project-section {
   position: relative !important;
   padding-top: 150px !important;
-  padding-bottom: 30px !important;
+  padding-bottom: 190px !important;
 }
 
 .project-card {
@@ -541,6 +541,49 @@ button:focus {
   transition: all 0.4s ease 0s !important;
 }
 
+.tooltip-container .tooltip-message {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  z-index: 9999;
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 9999;
+  bottom: 125%; /* Position the tooltip above the icon */
+  left: 50%;
+  margin-left: -60px; /* Use half of the tooltip width to center it */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-container .tooltip-message::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip-container:hover {
+  overflow: auto !important;
+}
+
+
+.tooltip-container:hover .tooltip-message {
+  visibility: visible;
+  opacity: 1;
+  font-size: 1rem;
+}
+
 @media (max-width: 767px) {
   .tech-icons {
     margin: 10px !important;
@@ -549,9 +592,10 @@ button:focus {
 
 .tech-icons:hover {
   transform: scale(1.05) !important;
-  overflow: hidden !important;
+  overflow: auto !important;
   border: 2.2px solid rgba(197, 115, 230, 0.883) !important;
 }
+
 .tech-icon-images {
   padding: 20px !important;
   line-height: 1.6 !important;
@@ -587,6 +631,7 @@ button:focus {
   background-image: var(--section-background-color) !important;
   color: white !important;
   width: 100% !important;
+  margin-inline: 0 !important;
 }
 
 
@@ -692,6 +737,7 @@ button:focus {
   width: 53px !important;
   align-items: center;
   place-items: center;
+  z-index: 999;
 }
 
 .scrollto-top > Button {
@@ -709,6 +755,10 @@ button:focus {
 }
 
 /* This below is to be used for peaceful purposes :) */
-/* *, *::before, *::after {
+*, *::before, *::after {
   outline: 1px solid red;
-} */
+}
+
+body {
+  overflow: hidden;
+}

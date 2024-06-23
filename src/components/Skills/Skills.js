@@ -7,7 +7,7 @@ import { FaLink } from "react-icons/fa6";
 
 function Skills() {
     return (
-        <Container className="skills-section">
+        <Container fluid className="skills-section">
             <h1 className="project-heading">
                 <Link to="skills" smooth={true} activeClass="active" offset={50} duration={500} spy={true} >
                     <FaLink />

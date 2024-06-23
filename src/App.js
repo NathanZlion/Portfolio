@@ -16,8 +16,8 @@ import { Modal, Button } from "react-bootstrap";
 import Resume from "./components/Resume/Resume"
 import pdf from "./Assets/../Assets/Nathnael_Dereje_Resume.pdf";
 import { AiOutlineDownload } from "react-icons/ai";
+import { Container } from "react-bootstrap";
 
-// import CustomPaging from "./components/Projects/Projectnew";
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -38,7 +38,7 @@ function App() {
   return (
     <Router>
       <Preloader load={load} />
-      <div className="App" id={load ? "no-scroll" : "scroll"}>
+      <div className="relative" id={load ? "no-scroll" : "scroll"}>
         <Navbar handleCloseModal={handleCloseModal} handleShowModal={handleShowModal} />
         <Modal show={showModal} onHide={handleCloseModal} style={{ height: "95vh" }}
           aria-labelledby="contained-modal-title-vcenter"
@@ -65,25 +65,26 @@ function App() {
           </Modal.Footer>
         </Modal>
 
+        <Container>
+          <Element name="home" className="element active">
+            <Home />
+          </Element>
 
-        <Element name="home" className="element active">
-          <Home />
-        </Element>
+          <Element name="about" className="element">
+            <About />
+          </Element>
 
-        <Element name="about" className="element">
-          <About />
-        </Element>
+          <Element name="skills" className="element">
+            <Skills />
+          </Element>
 
-        <Element name="skills" className="element">
-          <Skills />
-        </Element>
+          <Element name="projects" className="element active">
+            <Projects />
+          </Element>
 
-        <Element name="projects" className="element active">
-          <Projects />
-        </Element>
-
-        <ScrollToTop />
-        <Footer />
+          <ScrollToTop />
+          <Footer />
+        </Container>
       </div>
     </Router>
   );
