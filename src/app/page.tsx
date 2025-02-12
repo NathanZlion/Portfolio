@@ -1,13 +1,15 @@
 'use client'
 
 import { Progress } from "@/components/ui/progress";
-import { FaApple } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { IconBrandAppleFilled } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function Main() {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     let start = 0;
@@ -28,6 +30,9 @@ export default function Home() {
         clearInterval(interval);
         setProgress(100);
         setTimeout(() => setIsLoading(false), fadeOutDuration);
+
+        // Redirect after loading completes
+        router.push("/home");
       }
     }, intervalTime);
 
@@ -44,7 +49,7 @@ export default function Home() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <FaApple className="text-white text-6xl size-28" />
+          <IconBrandAppleFilled className="text-white text-6xl size-28" />
           <Progress className="w-40 h-1 bg-gray-500" value={progress} />
         </motion.div>
       ) : (
@@ -55,10 +60,6 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-          </main>
-          <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-          </footer>
         </motion.div>
       )}
     </AnimatePresence>
