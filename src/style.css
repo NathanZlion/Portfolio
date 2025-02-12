@@ -755,9 +755,9 @@ button:focus {
 }
 
 /* This below is to be used for peaceful purposes :) */
-*, *::before, *::after {
+/* *, *::before, *::after {
   outline: 1px solid red;
-}
+} */
 
 body {
   overflow: hidden;
