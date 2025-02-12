@@ -37,7 +37,11 @@ export default function Main() {
     }, intervalTime);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [
+    setIsLoading,
+    setProgress,
+    router,
+  ]);
 
   return (
     <AnimatePresence mode="wait">

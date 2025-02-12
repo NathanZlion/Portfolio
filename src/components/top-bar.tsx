@@ -117,7 +117,7 @@ export default function TopNav() {
                                 <Calendar
                                     mode="single"
                                     selected={new Date()}
-                                    onSelect={(_) => { }}
+                                    onSelect={() => { }}
                                     onDayClick={(_, __, event) => {
                                         event.stopPropagation();
                                     }}
