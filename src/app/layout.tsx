@@ -50,7 +50,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${sanfransiscoPro.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-background font-sanfransisco`} >
+      <body className={`${sanfransiscoPro.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-background`} >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

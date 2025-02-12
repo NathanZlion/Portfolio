@@ -55,11 +55,8 @@ export default function Dock() {
             },
         ];
     return (
-        <div className="flex flex-col gap-2 items-center justify-center w-full h-fit bottom-6 absolute mb-2 inset-x-0">
-            <FloatingDock
-                mobileClassName="translate-y-20" // only for demo, remove for production
-                items={items}
-            />
+        <div className="flex flex-col gap-2 items-end lg:items-center justify-center w-full h-fit bottom-6 absolute p-2 inset-x-0">
+            <FloatingDock items={items} />
         </div>
     );
 }
