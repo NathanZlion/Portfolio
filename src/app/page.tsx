@@ -32,7 +32,7 @@ export default function Main() {
         setTimeout(() => setIsLoading(false), fadeOutDuration);
 
         // Redirect after loading completes
-        router.push("/home");
+        router.push("/*");
       }
     }, intervalTime);
 

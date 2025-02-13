@@ -5,7 +5,7 @@
  **/
 
 import { cn } from "@/lib/utils";
-import { IconAppsFilled, IconLayoutNavbarCollapse } from "@tabler/icons-react";
+import { IconAppsFilled } from "@tabler/icons-react";
 import {
     AnimatePresence,
     MotionValue,
@@ -21,7 +21,7 @@ import { Button } from "./button";
 export interface FloatingDockItem {
     title: string;
     icon: React.ReactNode;
-    onClick?: () => void;
+    onIconClick?: () => void;
     open?: boolean;
 }
 
@@ -94,7 +94,7 @@ const FloatingDockMobile = ({
             </AnimatePresence>
             <Button
                 onClick={() => setOpen(!open)}
-                className="h-14 w-14 rounded-full bg-popover/35 flex items-center justify-center border border-accent-foreground/25 backdrop-blur-md shadow-md p-0"
+                className="h-14 w-14 rounded-full bg-popover/35 flex items-center justify-center border border-accent-foreground/25 backdrop-blur-md shadow-md p-0 focus:bg-transparent"
             >
                 <IconAppsFilled className="text-accent-foreground" />
             </Button>
@@ -128,13 +128,13 @@ function IconContainer({
     mouseX,
     title,
     icon,
-    onClick,
+    onIconClick,
     open,
 }: {
     mouseX: MotionValue;
     title: string;
     icon: React.ReactNode;
-    onClick?: () => void;
+    onIconClick?: () => void;
     open?: boolean;
 }) {
     const ref = useRef<HTMLDivElement>(null);
@@ -177,7 +177,7 @@ function IconContainer({
 
     return (
         <Link href={""}
-            onClick={onClick}
+            onClick={onIconClick}
             className="border border-accent-foreground/5 hover:border-accent-foreground/5
                 rounded-2xl bg-transparent w-fit h-fit p-0">
             <motion.div
@@ -212,11 +212,9 @@ function IconContainer({
                 </motion.div>
 
                 {/* open indicator dot */}
-                {
-                    open && (
-                        <motion.div className="absolute h-1 w-1 rounded-full bg-foreground/45 -bottom-2" />
-                    )
-                }
+                {open && (
+                    <motion.div className="absolute h-1 w-1 rounded-full bg-foreground/45 -bottom-2" />
+                )}
             </motion.div>
         </Link>
     );

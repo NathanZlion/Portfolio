@@ -1,11 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from "@/lib/state/counter/counterSlice"
+import { configureStore } from '@reduxjs/toolkit';
+import counterReducer from "@/lib/state/counter/counterSlice";
+import applicationReducer from "@/lib/state/applications/application_states";
 
 export const makeStore = () => {
     return configureStore({
         reducer: {
             // dummy reducer
             counterReducer,
+
+            // reducer to track windows on the screen
+            applicationReducer,
         },
     })
 }
