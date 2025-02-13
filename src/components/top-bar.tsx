@@ -73,7 +73,7 @@ export default function TopNav() {
             {showNotch && <Notch />}
 
             {/* Right - Controls & Time */}
-            <Menubar className="relative rounded-full border border-transparent shadow-md flex justify-center space-x-4 py-2 bg-transparent backdrop-blur-sm">
+            <Menubar className="relative rounded-full border border-transparent shadow-md flex gap-0 justify-center space-x-4 py-2 bg-transparent backdrop-blur-sm">
                 <MenubarMenu>
                     <MenubarTrigger> {<IconServer />} </MenubarTrigger>
                     <MenubarContent>
@@ -162,7 +162,7 @@ export const ToggleMenuItem = ({
 
 const Notch = () => {
     return (
-        <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 bg-black/50 w-32 h-10 rounded-b-xl shadow-lg">
+        <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 bg-black/50 w-32 h-10 rounded-b-xl shadow-lg hidden md:flex">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-10 bg-black/80 rounded-b-2xl shadow-[0_4px_10px_rgba(0,0,0,0.3)] backdrop-blur-md flex items-center justify-center">
                 <span role="img" aria-label="Notch" >
                 </span>

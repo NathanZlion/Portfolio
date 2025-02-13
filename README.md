@@ -1,10 +1,12 @@
 # 🍏 MacOS-Inspired Portfolio
 A sleek, smooth, and modern portfolio website inspired by MacOS, designed to be elegant. You can use this project to create your own portfolio website.
 
-- Inspired by [this project](https://github.com/PuruVJ/macos-web)
+- Inspired by [this project](https://github.com/PuruVJ/macos-web), which was made in Svelte. I wanted to work with Nextjs so I
+decided to recreate it in Nextjs.
 
 # Technologies and Libraries Used
 - Nextjs : for Frontend
+- Redux Toolkit : for state management
 - Tailwindcss : for styling
 - Shadcn : for composable Basic UI components
 - Framer Motion : for cool custom animations

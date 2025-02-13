@@ -76,7 +76,3 @@ body {
     @apply bg-background text-foreground;
   }
 }
-
-/* *, *::before, *::after {
-  outline: 1px solid red;
-} */
