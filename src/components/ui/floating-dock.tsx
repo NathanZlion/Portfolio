@@ -17,12 +17,19 @@ import {
 import Link from "next/link";
 import { useRef, useState } from "react";
 
+export interface FloatingDockItem {
+    title: string;
+    icon: React.ReactNode;
+    onClick?: () => void;
+    open?: boolean;
+}
+
 export const FloatingDock = ({
     items,
     desktopClassName,
     mobileClassName,
 }: {
-    items: { title: string; icon: React.ReactNode; href: string }[];
+    items: FloatingDockItem[];
     desktopClassName?: string;
     mobileClassName?: string;
 }) => {
@@ -38,7 +45,7 @@ const FloatingDockMobile = ({
     items,
     className,
 }: {
-    items: { title: string; icon: React.ReactNode; href: string }[];
+    items: FloatingDockItem[];
     className?: string;
 }) => {
     const [open, setOpen] = useState(false);
@@ -68,7 +75,7 @@ const FloatingDockMobile = ({
                                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}
                             >
                                 <Link
-                                    href={item.href}
+                                    href={""}
                                     key={item.title}
                                     className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
                                 >
@@ -93,7 +100,7 @@ const FloatingDockDesktop = ({
     items,
     className,
 }: {
-    items: { title: string; icon: React.ReactNode; href: string }[];
+    items: FloatingDockItem[];
     className?: string;
 }) => {
     const mouseX = useMotionValue(Infinity);
@@ -101,8 +108,7 @@ const FloatingDockDesktop = ({
         <motion.div
             onMouseMove={(e) => mouseX.set(e.pageX)}
             onMouseLeave={() => mouseX.set(Infinity)}
-            className={cn(
-                "mx-auto hidden md:flex h-16 gap-4 items-end  rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3",
+            className={cn("mx-auto hidden md:flex h-20 gap-4 items-center  rounded-2xl bg-background/20 px-2 pb-2 border border-accent-foreground/25 backdrop-blur-md shadow-md",
                 className
             )}
         >
@@ -117,30 +123,28 @@ function IconContainer({
     mouseX,
     title,
     icon,
-    href,
+    onClick,
+    open,
 }: {
     mouseX: MotionValue;
     title: string;
     icon: React.ReactNode;
-    href: string;
+    onClick?: () => void;
+    open?: boolean;
 }) {
     const ref = useRef<HTMLDivElement>(null);
 
     const distance = useTransform(mouseX, (val) => {
         const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-
         return val - bounds.x - bounds.width / 2;
     });
 
-    const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-    const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+    const widthTransform = useTransform(distance, [-150, 0, 150], [50, 100, 50]);
+    const heightTransform = useTransform(distance, [-150, 0, 150], [50, 100, 50]);
 
-    const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-    const heightTransformIcon = useTransform(
-        distance,
-        [-150, 0, 150],
-        [20, 40, 20]
-    );
+    const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 60]);
+    const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 50, 20]);
+
 
     const width = useSpring(widthTransform, {
         mass: 0.1,
@@ -167,13 +171,16 @@ function IconContainer({
     const [hovered, setHovered] = useState(false);
 
     return (
-        <Link href={href}>
+        <Link href={""}
+            onClick={onClick}
+            className="border border-accent-foreground/5 hover:border-accent-foreground/5
+                rounded-full bg-transparent w-fit h-fit p-0">
             <motion.div
                 ref={ref}
                 style={{ width, height }}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
-                className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative"
+                className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative "
             >
                 <AnimatePresence>
                     {hovered && (
@@ -181,7 +188,10 @@ function IconContainer({
                             initial={{ opacity: 0, y: 10, x: "-50%" }}
                             animate={{ opacity: 1, y: 0, x: "-50%" }}
                             exit={{ opacity: 0, y: 2, x: "-50%" }}
-                            className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+                            className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100/10 border
+                            dark:bg-neutral-800 dark:border-neutral-900/10 dark:text-white
+                            border-gray-200/10 text-neutral-700 absolute left-1/2 -translate-x-1/2
+                            -top-8 text-xs"
                         >
                             {title}
                         </motion.div>
@@ -193,6 +203,13 @@ function IconContainer({
                 >
                     {icon}
                 </motion.div>
+
+                {/* open indicator dot */}
+                {
+                    open && (
+                        <motion.div className="absolute h-1 w-1 rounded-full bg-foreground/45 -bottom-2" />
+                    )
+                }
             </motion.div>
         </Link>
     );
