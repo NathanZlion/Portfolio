@@ -1,64 +1,35 @@
-import { useAppDispatch } from "@/lib/hooks";
-import { closeApplication, setSizingStatus, ApplicationState, SizingState } from "@/lib/state/applications/application_states";
-import { Rnd } from "react-rnd"
-import { Button } from "./ui/button";
-import { IconCaretLeftRightFilled, IconMinus, IconX } from "@tabler/icons-react";
+'use client';
 
+// import { useAppDispatch } from "@/lib/hooks";
+import { ApplicationState, } from "@/lib/state/applications/application_states";
+import { Rnd } from "react-rnd"
+
+/**
+ * This widget should be used as a wrapper for any application component.
+ * It enforces things like window size, and movement. Also ensures that the window
+ * is not rendered outside of the screen, and if it's minimized or closed it will
+ * not be rendered.
+ */
 export default function Window(
     {
-        window,
+        applicationState,
         children
     }: {
-        window: Readonly<ApplicationState>,
+        applicationState: Readonly<ApplicationState>,
         children: React.ReactNode;
     }
 ) {
-    const dispatch = useAppDispatch();
+    // for dispatching change in size and position of the window
+    // const dispatch = useAppDispatch();
 
     return (
         <Rnd default={{
-            x: 0,
-            y: 0,
-            width: 320,
-            height: 200,
+            ...applicationState,
         }}
             className="bg-white bg-opacity-10 backdrop-blur-md shadow-lg border border-black border-opacity-10"
         >
-            <div >
-                <WindowTopBar
-                    onClose={() => { dispatch(closeApplication({ id: window.id })) }}
-                    onMinimize={() => { dispatch(setSizingStatus({ id: window.id, status: SizingState.MINIMIZED })) }}
-                    onMaximize={() => { dispatch(setSizingStatus({ id: window.id, status: SizingState.FULL_SCREEN })) }}
-                />
-                {children}
-            </div>
+            {children}
         </Rnd>
     );
 }
 
-
-function WindowTopBar(
-    {
-        onClose,
-        onMinimize,
-        onMaximize,
-    }: {
-        onClose: () => void;
-        onMinimize: () => void;
-        onMaximize: () => void;
-    }
-) {
-    return (
-        <div className="container flex flex-row gap-2 items-center justify-start py-1 px-4">
-            <Button onClick={onClose} className="rounded-full aspect-square bg-red-500 hover:bg-red-400 p-0 w-6 h-6">
-                <IconX className="aspect-square text-black/50 h-6 w-6 rounded-full" />
-            </Button>
-            <Button onClick={onMinimize} className="rounded-full aspect-square bg-yellow-500 hover:bg-yellow-400 p-0 w-6 h-6">
-                <IconMinus className="aspect-square text-black/50 h-6 w-6 rounded-full" />
-            </Button>
-            <Button onClick={onMaximize} className="-rotate-45 rounded-full aspect-square bg-green-500 hover:bg-green-400 p-0 w-6 h-6">
-                <IconCaretLeftRightFilled className="aspect-square text-black/50 h-6 w-6 rounded-full" />
-            </Button>
-        </div>
-    );
-}

@@ -1,4 +1,4 @@
-import HomeApp from "@/app/(Desktop)/(apps)/home_app";
+import HomeApp from "@/app/(Desktop)/(apps)/home/home_app";
 import { ApplicationState, SizingState } from "./state/applications/application_states";
 
 

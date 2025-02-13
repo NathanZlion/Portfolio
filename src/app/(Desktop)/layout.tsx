@@ -3,13 +3,10 @@
 import Dock from "@/components/dock";
 import TopNav from "@/components/top-bar";
 import Window from "@/components/window";
+import { AllApps } from "@/lib/apps";
 import { useAppSelector } from "@/lib/hooks";
 
-export default function DesktopLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function DesktopLayout() {
     const apps = useAppSelector((state) => state.applicationReducer.value);
 
     return (
@@ -18,13 +15,19 @@ export default function DesktopLayout({
 
             <section className="h-full w-full">
                 {apps.map((app) => {
+                    const AppComponent = AllApps[app.id]?.appComponent;
+
+                    // Handle cases where appComponent might be undefined
+                    if (!AppComponent) return null;
+
                     return (
-                        <Window window={app} key={app.id}>
-                            {children}
+                        <Window applicationState={app} key={app.id}>
+                            <AppComponent />
                         </Window>
                     );
                 })}
             </section>
+
             <Dock />
         </div>
     );
