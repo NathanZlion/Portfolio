@@ -10,7 +10,7 @@ export default function DesktopLayout({
 }>) {
 
     return (
-        <div className="relative h-screen max-h-screen w-full bg-primary/30">
+        <div className="relative h-screen max-h-screen w-full bg-[url('/img/wallpaper.webp')] bg-cover bg-center">
             <TopNav />
             <section className="h-full w-full">
                 {children}

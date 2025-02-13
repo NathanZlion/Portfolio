@@ -108,12 +108,10 @@ const FloatingDockDesktop = ({
         <motion.div
             onMouseMove={(e) => mouseX.set(e.pageX)}
             onMouseLeave={() => mouseX.set(Infinity)}
-            className={cn("mx-auto hidden md:flex h-20 gap-4 items-center  rounded-2xl bg-background/20 px-2 pb-2 border border-accent-foreground/25 backdrop-blur-md shadow-md",
-                className
-            )}
+            className={cn("mx-auto hidden md:flex h-20 gap-4 items-center  rounded-2xl bg-background/20 px-2 pb-2 hover:pb-5 border border-accent-foreground/25 backdrop-blur-md shadow-md", className)}
         >
-            {items.map((item) => (
-                <IconContainer mouseX={mouseX} key={item.title} {...item} />
+            {items.map((item, index) => (
+                <IconContainer mouseX={mouseX} key={`dock_menu_icon_${index}`} {...item} />
             ))}
         </motion.div>
     );
@@ -142,8 +140,8 @@ function IconContainer({
     const widthTransform = useTransform(distance, [-150, 0, 150], [50, 100, 50]);
     const heightTransform = useTransform(distance, [-150, 0, 150], [50, 100, 50]);
 
-    const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 60]);
-    const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 50, 20]);
+    const widthTransformIcon = useTransform(distance, [-150, 0, 150], [50, 100, 50]);
+    const heightTransformIcon = useTransform(distance, [-150, 0, 150], [50, 100, 50]);
 
 
     const width = useSpring(widthTransform, {
@@ -174,14 +172,15 @@ function IconContainer({
         <Link href={""}
             onClick={onClick}
             className="border border-accent-foreground/5 hover:border-accent-foreground/5
-                rounded-full bg-transparent w-fit h-fit p-0">
+                rounded-2xl bg-transparent w-fit h-fit p-0">
             <motion.div
                 ref={ref}
                 style={{ width, height }}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
-                className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative "
-            >
+                className="aspect-square rounded-2xl bg-background/10 flex items-center justify-center relative p-0 m-0
+
+                ">
                 <AnimatePresence>
                     {hovered && (
                         <motion.div
@@ -191,7 +190,8 @@ function IconContainer({
                             className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100/10 border
                             dark:bg-neutral-800 dark:border-neutral-900/10 dark:text-white
                             border-gray-200/10 text-neutral-700 absolute left-1/2 -translate-x-1/2
-                            -top-8 text-xs"
+                            -top-8 text-xs
+                             "
                         >
                             {title}
                         </motion.div>
@@ -199,7 +199,7 @@ function IconContainer({
                 </AnimatePresence>
                 <motion.div
                     style={{ width: widthIcon, height: heightIcon }}
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center p-0 rounded-xl"
                 >
                     {icon}
                 </motion.div>
