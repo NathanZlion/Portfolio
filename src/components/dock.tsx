@@ -82,7 +82,7 @@ export default function Dock() {
         {
             title: "My Blog",
             icon: (
-                <AppIcon imageUri={"/img/journal.svg"} alt={"Blog"} className="p-2 rounded-xl" />
+                <AppIcon imageUri={"/img/journal.png"} alt={"Blog"} />
             ),
             onClick() { console.log("Home clicked") },
             open: true

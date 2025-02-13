@@ -5,7 +5,7 @@
  **/
 
 import { cn } from "@/lib/utils";
-import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
+import { IconAppsFilled, IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import {
     AnimatePresence,
     MotionValue,
@@ -16,6 +16,7 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { Button } from "./button";
 
 export interface FloatingDockItem {
     title: string;
@@ -50,51 +51,57 @@ const FloatingDockMobile = ({
 }) => {
     const [open, setOpen] = useState(false);
     return (
-        <div className={cn("relative block md:hidden", className)}>
+        <div className={cn("relative md:hidden w-3/4 max-w-60 flex items-end justify-end", className)}>
             <AnimatePresence>
                 {open && (
                     <motion.div
                         layoutId="nav"
-                        className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-2"
+                        className="absolute bottom-full mb-2 inset-x-0 right-0 flex flex-col items-end gap-2 
+                                   max-h-[60vh] overflow-y-auto scrollbar-hide p-2 rounded-lg bg-white/50 
+                                   dark:bg-black/30 shadow-md backdrop-blur-md overflow-x-hidden"
                     >
                         {items.map((item, idx) => (
                             <motion.div
                                 key={item.title}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{
-                                    opacity: 1,
-                                    y: 0,
-                                }}
+                                initial={{ opacity: 0, x: 10 }}
+                                animate={{ opacity: 1, x: 0 }}
                                 exit={{
                                     opacity: 0,
-                                    y: 10,
-                                    transition: {
-                                        delay: idx * 0.05,
-                                    },
+                                    x: 10,
+                                    transition: { delay: idx * 0.05 },
                                 }}
                                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}
+                                className="flex items-center justify-end gap-2 w-fit max-w-[80vw]"
                             >
+                                {/* Label Positioned to the Left & Expands Leftward */}
+                                <span className="text-xs text-neutral-600 dark:text-neutral-300 bg-white/60 dark:bg-black/40 
+                                                 px-3 py-1 rounded-lg shadow backdrop-blur-md text-right 
+                                                 whitespace-nowrap max-w-[200px] overflow-hidden text-ellipsis">
+                                    {item.title}
+                                </span>
+
+                                {/* Icon */}
                                 <Link
                                     href={""}
-                                    key={item.title}
-                                    className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
+                                    className="h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center shadow-md"
                                 >
-                                    <div className="h-4 w-4">{item.icon}</div>
+                                    <div className="h-5 w-5">{item.icon}</div>
                                 </Link>
                             </motion.div>
                         ))}
                     </motion.div>
                 )}
             </AnimatePresence>
-            <button
+            <Button
                 onClick={() => setOpen(!open)}
-                className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
+                className="h-14 w-14 rounded-full bg-popover/35 flex items-center justify-center border border-accent-foreground/25 backdrop-blur-md shadow-md p-0"
             >
-                <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
-            </button>
+                <IconAppsFilled className="text-accent-foreground" />
+            </Button>
         </div>
     );
 };
+
 
 const FloatingDockDesktop = ({
     items,
