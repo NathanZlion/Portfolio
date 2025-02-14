@@ -10,33 +10,36 @@ import { useEffect } from "react";
 
 export default function DesktopLayout() {
 
-    const apps = useAppSelector((state) => state.applicationReducer.value);
+    const apps = useAppSelector((state) => state.applicationReducer.apps);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        Object.entries(AllApps).forEach(([id, app]) =>
-            dispatch(registerApplication({ id, appState: app.windowState }))
-        );
+        Object.entries(AllApps).forEach(([id, app]) => {
+            dispatch(registerApplication({ id, appState: { ...app.windowState } }));
+        });
     }, []);
 
+    useEffect(() => {
+        console.log(`${new Date().toLocaleTimeString()} UPDATED !!!`);
+    }, [apps]);
+
     return (
-        <section className="relative h-screen max-h-screen w-full bg-[url('/img/wallpaper.webp')] bg-cover bg-center  overflow-hidden">
+        <section className="relative h-screen max-h-screen w-full bg-[url('/img/wallpaper.webp')] bg-cover bg-center overflow-hidden">
             <TopNav />
 
             <section className="h-full w-full outline outline-green" id="desktop-wrapper">
-                {apps.map((app) => {
-                    const AppComponent = AllApps[app.id]?.appComponent;
-                    if (!AppComponent) return null;
+                {Object.entries(apps).map(
+                    ([id, appState]) => {
+                        const AppComponent = AllApps[id]?.appComponent;
+                        if (!AppComponent) return null;
 
-                    return (
-                        <Window
-                            applicationState={app}
-                            key={app.id}
-                        >
-                            <AppComponent {...app} />
-                        </Window>
-                    );
-                })}
+                        return (
+                            <Window applicationState={appState} key={id} >
+                                <AppComponent {...appState} />
+                            </Window>
+                        );
+                    }
+                )}
             </section>
 
             <Dock />

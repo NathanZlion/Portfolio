@@ -11,11 +11,14 @@ export const makeStore = () => {
             // reducer to track windows on the screen
             applicationReducer,
         },
-        middleware(getDefaultMiddleware) {
-            return getDefaultMiddleware({
-                serializableCheck: false,
-            });
-        },
+        // I actually need a middleware to handle serializable check
+        // coz it's good 
+
+        // middleware(getDefaultMiddleware) {
+        //     return getDefaultMiddleware({
+        //         serializableCheck: false,
+        //     });
+        // },
     })
 }
 

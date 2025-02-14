@@ -1,9 +1,11 @@
 
-export enum SizingState {
-    FULL_SCREEN = "full_screen",
-    MINIMIZED = "minimized",
-    NORMAL = "normal"
-}
+// export enum SizingState {
+//     FULL_SCREEN = "full_screen",
+//     MINIMIZED = "minimized",
+//     NORMAL = "normal"
+// }
+
+export type SizingState = "full_screen" | "minimized" | "normal";
 
 export type ApplicationState = {
     id: string;                // Unique ID for each window

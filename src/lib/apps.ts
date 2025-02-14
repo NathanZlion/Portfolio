@@ -46,11 +46,11 @@ export class AppWindowStateConfig implements ApplicationState {
     static default({ id }: { id: string }): AppWindowStateConfig {
         return new AppWindowStateConfig(
             id,
-            100,
-            400,
+            150,
+            120,
             800,
             600,
-            SizingState.FULL_SCREEN,
+            "normal",
             1,
             false,
             false
@@ -222,11 +222,11 @@ export const AllApps: {
 } = {
     "home": HomeApplication,
     "education": EducationApplication,
-    "work_experience": ExperienceApplication,
+    "experience": ExperienceApplication,
     "projects": ProjectsApplication,
     "contact": ContactApplication,
     "hobby": HobbyApplication,
-    "resume_preview": PreviewApplication,
+    "resume": PreviewApplication,
     "github": GithubApplication,
     "blog": BlogApplication,
     "terminal": TerminalApplication,

@@ -1,7 +1,7 @@
 "use client";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ApplicationState, SizingState } from "./interfaces";
+import { ApplicationState } from "./interfaces";
 
 
 // the sensitivity of how deep into top nav the window should go to be considered full screen
@@ -10,117 +10,115 @@ export const TOP_NAV_HEIGHT = 40;
 
 
 export interface AllApplicationsState {
-    value: ApplicationState[];
+    apps: {
+        [key: string]: ApplicationState;
+    },
+    activeApp: string | null;
 }
 
 const initialState: AllApplicationsState = {
-    value: []
+    apps: {},
+    activeApp: null,
 };
 
 export const WindowSlice = createSlice({
     name: "windows",
     initialState: initialState,
     reducers: {
-        registerApplication: (state: AllApplicationsState, action: PayloadAction<{ id: string, appState: ApplicationState }>) => {
-            if (state.value.find((window) => window.id === action.payload.id)) {
+        registerApplication: (
+            state: AllApplicationsState,
+            action: PayloadAction<{
+                id: string,
+                appState: ApplicationState
+            }>) => {
+            console.log("registering app", action.payload.id);
+
+            if (state.apps[action.payload.id]) {
+                console.log(`App with id ${action.payload.id} already exists`);
                 return;
-            } else {
-                state.value.push(
-                    {
-                        ...action.payload.appState,
-                        id: action.payload.id,
-                        x: 0,
-                        y: TOP_NAV_HEIGHT,
-                        width: 800,
-                        height: 600,
-                        sizingState: SizingState.NORMAL,
-                        zIndex: state.value.length + 1,
-                        active: true,
-                        open: false,
-                    },
-                )
             }
+
+            state.apps[action.payload.id] = { ...action.payload.appState };
+            state.activeApp = action.payload.id;
         },
         openApplication: (state: AllApplicationsState, action: PayloadAction<{ id: string }>) => {
-            state.value.map((window) => {
-                if (window.id === action.payload.id) {
-                    window.open = true;
-                    window.active = true;
-                    if (window.sizingState === SizingState.MINIMIZED) {
-                        window.sizingState = SizingState.NORMAL;
-                    }
-                }
-                return window;
-            });
+            const appId = action.payload.id;
+            console.log("opening app", appId);
+
+            state.apps[appId].open = true;
+            state.apps[appId].active = true;
+            if (state.apps[appId].sizingState === "minimized") {
+                state.apps[appId].sizingState = "normal";
+            }
+
+            state.activeApp = action.payload.id;
         },
         closeApplication: (state: AllApplicationsState, action: PayloadAction<{ id: string }>) => {
-            state.value.map((window) => {
-                if (window.id === action.payload.id) {
-                    window.sizingState = SizingState.NORMAL;
-                    window.open = false;
-                    window.active = false;
-                }
-                return window; // return the window
-            });
+            const appId = action.payload.id;
+            console.log("closing app", appId);
+
+            state.apps[appId] = {
+                ...state.apps[action.payload.id],
+                open: false,
+                active: false,
+                sizingState: "normal"
+            }
+
+            if (state.activeApp === appId) {
+                state.activeApp = null;
+            }
         },
         setActiveApplication: (state: AllApplicationsState, action: PayloadAction<{ id: string }>) => {
-            state.value = state.value.map((window) => {
-                window.active = window.id === action.payload.id;
-                return window;
-            });
+            const appId = action.payload.id;
+
+            // Handle closed check
+            console.log("setting active app", appId);
+            state.activeApp = appId;
         },
         minimizeScreen: (state: AllApplicationsState, action: PayloadAction<{
             id: string,
         }>) => {
-            state.value = state.value.map((window) => {
-                if (window.id === action.payload.id) {
-                    window.sizingState = SizingState.MINIMIZED;
-                }
-                return window;
-            });
+            const appId = action.payload.id;
+            console.log("minimizing app", appId);
+
+            state.apps[appId].sizingState = "minimized"
         },
         toggleFullScreen: (state: AllApplicationsState, action: PayloadAction<{ id: string }>) => {
-            state.value = state.value.map((window) => {
-                if (window.id === action.payload.id) {
-                    window.sizingState = window.sizingState === SizingState.FULL_SCREEN ? SizingState.NORMAL : SizingState.FULL_SCREEN;
-                }
-                return window;
-            });
+            const appId = action.payload.id;
+            if (state.apps[appId].sizingState == "minimized") {
+                return;
+            } else if (state.apps[appId].sizingState == "full_screen") {
+                state.apps[appId].sizingState = "normal";
+            } else {
+                state.apps[appId].sizingState = "full_screen";
+            }
         },
         setWindowPosition: (
             state: AllApplicationsState,
             action: PayloadAction<{ id: string, x: number, y: number }>
         ) => {
-            if (action.payload.y < FULL_SCREEN_THRESHOLD) {
+            const appId = action.payload.id;
+            console.log("setting window position", appId);
+
+            // snap to top
+            if (action.payload.y < TOP_NAV_HEIGHT) {
                 action.payload.y = TOP_NAV_HEIGHT;
-                // make full screen if dragged to the top
-                state.value = state.value.map((window) => {
-                    if (window.id === action.payload.id) {
-                        window.sizingState = SizingState.FULL_SCREEN;
-                    }
-                    return window;
-                });
+            }
+            if (action.payload.y < FULL_SCREEN_THRESHOLD) {
+                state.apps[appId].sizingState = "full_screen";
             }
 
-            state.value = state.value.map((window) => {
-                if (window.id === action.payload.id) {
-                    window.x = action.payload.x;
-                    window.y = action.payload.y;
-                }
-                return window;
-            });
+            state.apps[appId].x = action.payload.x;
+            state.apps[appId].y = action.payload.y;
         },
         setWindowSize: (
             state: AllApplicationsState,
             action: PayloadAction<{ id: string, width: number, height: number }>
         ) => {
-            state.value = state.value.map((window) => {
-                if (window.id === action.payload.id) {
-                    window.width = action.payload.width;
-                    window.height = action.payload.height;
-                }
-                return window;
-            });
+            const appId = action.payload.id;
+            console.log("setting window size", appId);
+            state.apps[appId].width = action.payload.width;
+            state.apps[appId].height = action.payload.height;
         },
     },
 });
