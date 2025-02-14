@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/lib/hooks";
 import { closeApplication, minimizeScreen, toggleFullScreen } from "@/lib/state/applications/application_states";
 import React from "react";
 
-const HomeApp: React.FC<AppWindowStateInterface> = ({ id: app_id }) => {
+const ContactApp: React.FC<AppWindowStateInterface> = ({ id: app_id }) => {
     const dispatch = useAppDispatch();
     return (
         <div>
@@ -24,4 +24,4 @@ const HomeApp: React.FC<AppWindowStateInterface> = ({ id: app_id }) => {
     )
 }
 
-export default HomeApp;
+export default ContactApp;

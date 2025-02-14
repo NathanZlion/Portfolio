@@ -18,16 +18,11 @@ import { Toggle } from "@radix-ui/react-toggle";
 import { cn } from "@/lib/utils";
 
 export default function TopNav() {
-    // const { theme, setTheme } = useTheme();
     const [theme, setTheme] = useState<boolean>(true);
     const [showNotch, setShowNotch] = useState(true);
     const toggleTheme = () => {
         setTheme(!theme);
     }
-
-    // const toggleTheme = () => {
-    //     setTheme(theme === "dark" ? "light" : "dark");
-    // };
 
     const toggleNotch = () => {
         setShowNotch(!showNotch);

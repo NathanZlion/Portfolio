@@ -7,14 +7,17 @@ export const WindowTopBar = React.forwardRef<
     HTMLDivElement, {
         onClose: () => void;
         onMinimize: () => void;
-        onMaximize: () => void;
+        onFullScreenToggle: () => void;
     }>(
-        function WindowTopBar({ onClose, onMinimize, onMaximize }, ref) {
+        function WindowTopBar({ onClose, onMinimize, onFullScreenToggle }, ref) {
             return (
-                <div className="container flex flex-row gap-2 items-center justify-start py-1 px-4">
+                <div
+                    className="container flex flex-row gap-2 items-center justify-start py-1 px-4"
+                    ref={ref}
+                >
                     <CloseButton onClick={onClose} />
                     <MinimizeButton onClick={onMinimize} />
-                    <MaximizeButton onClick={onMaximize} />
+                    <MaximizeButton onClick={onFullScreenToggle} />
                 </div>
             );
         }

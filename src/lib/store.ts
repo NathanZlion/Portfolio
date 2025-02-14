@@ -11,6 +11,11 @@ export const makeStore = () => {
             // reducer to track windows on the screen
             applicationReducer,
         },
+        middleware(getDefaultMiddleware) {
+            return getDefaultMiddleware({
+                serializableCheck: false,
+            });
+        },
     })
 }
 

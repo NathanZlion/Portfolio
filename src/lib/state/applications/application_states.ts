@@ -1,64 +1,67 @@
+"use client";
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ApplicationState, SizingState } from "./interfaces";
 
 
-export enum SizingState {
-    FULL_SCREEN = "full_screen",
-    MINIMIZED = "minimized",
-    NORMAL = "normal"
-}
+// the sensitivity of how deep into top nav the window should go to be considered full screen
+const FULL_SCREEN_THRESHOLD = 10;
+export const TOP_NAV_HEIGHT = 40;
 
-export type ApplicationState = {
-    id: string;                // Unique ID for each window
-    x: number;                 // X position on the screen
-    y: number;                 // Y position on the screen
-    width: number;             // Window width
-    height: number;            // Window height
-    sizingState: SizingState;  // Is the window minimized, maximized, or normal?
-    zIndex: number;            // Determines which window is on top
-    active: boolean;           // Is this window currently active?
-    open: boolean;             // Is this window open?
-};
 
 export interface AllApplicationsState {
     value: ApplicationState[];
 }
 
 const initialState: AllApplicationsState = {
-    value: [
-        // TODO: Add home page here
-        // we could add the home window here, but let's ignore for now
-    ],
+    value: []
 };
 
 export const WindowSlice = createSlice({
     name: "windows",
     initialState: initialState,
     reducers: {
-        addApplication: (state: AllApplicationsState, action: PayloadAction<{ id: string }>) => {
+        registerApplication: (state: AllApplicationsState, action: PayloadAction<{ id: string, appState: ApplicationState }>) => {
             if (state.value.find((window) => window.id === action.payload.id)) {
-                // make it active
-                state.value = state.value.map((window) => {
-                    window.active = window.id === action.payload.id;
-                    return window;
-                });
+                return;
             } else {
                 state.value.push(
                     {
+                        ...action.payload.appState,
                         id: action.payload.id,
                         x: 0,
-                        y: 0,
+                        y: TOP_NAV_HEIGHT,
                         width: 800,
                         height: 600,
                         sizingState: SizingState.NORMAL,
                         zIndex: state.value.length + 1,
                         active: true,
-                        open: true,
-                    }
+                        open: false,
+                    },
                 )
             }
         },
+        openApplication: (state: AllApplicationsState, action: PayloadAction<{ id: string }>) => {
+            state.value.map((window) => {
+                if (window.id === action.payload.id) {
+                    window.open = true;
+                    window.active = true;
+                    if (window.sizingState === SizingState.MINIMIZED) {
+                        window.sizingState = SizingState.NORMAL;
+                    }
+                }
+                return window;
+            });
+        },
         closeApplication: (state: AllApplicationsState, action: PayloadAction<{ id: string }>) => {
-            state.value = state.value.filter((window) => window.id !== action.payload.id);
+            state.value.map((window) => {
+                if (window.id === action.payload.id) {
+                    window.sizingState = SizingState.NORMAL;
+                    window.open = false;
+                    window.active = false;
+                }
+                return window; // return the window
+            });
         },
         setActiveApplication: (state: AllApplicationsState, action: PayloadAction<{ id: string }>) => {
             state.value = state.value.map((window) => {
@@ -66,13 +69,20 @@ export const WindowSlice = createSlice({
                 return window;
             });
         },
-        setSizingStatus: (state: AllApplicationsState, action: PayloadAction<{
+        minimizeScreen: (state: AllApplicationsState, action: PayloadAction<{
             id: string,
-            status: SizingState,
         }>) => {
             state.value = state.value.map((window) => {
                 if (window.id === action.payload.id) {
-                    window.sizingState = action.payload.status;
+                    window.sizingState = SizingState.MINIMIZED;
+                }
+                return window;
+            });
+        },
+        toggleFullScreen: (state: AllApplicationsState, action: PayloadAction<{ id: string }>) => {
+            state.value = state.value.map((window) => {
+                if (window.id === action.payload.id) {
+                    window.sizingState = window.sizingState === SizingState.FULL_SCREEN ? SizingState.NORMAL : SizingState.FULL_SCREEN;
                 }
                 return window;
             });
@@ -81,6 +91,17 @@ export const WindowSlice = createSlice({
             state: AllApplicationsState,
             action: PayloadAction<{ id: string, x: number, y: number }>
         ) => {
+            if (action.payload.y < FULL_SCREEN_THRESHOLD) {
+                action.payload.y = TOP_NAV_HEIGHT;
+                // make full screen if dragged to the top
+                state.value = state.value.map((window) => {
+                    if (window.id === action.payload.id) {
+                        window.sizingState = SizingState.FULL_SCREEN;
+                    }
+                    return window;
+                });
+            }
+
             state.value = state.value.map((window) => {
                 if (window.id === action.payload.id) {
                     window.x = action.payload.x;
@@ -105,11 +126,13 @@ export const WindowSlice = createSlice({
 });
 
 export const {
-    addApplication,
+    registerApplication,
+    openApplication,
     closeApplication,
     setActiveApplication,
-    setSizingStatus,
+    minimizeScreen,
     setWindowPosition,
-    setWindowSize
+    setWindowSize,
+    toggleFullScreen,
 } = WindowSlice.actions;
 export default WindowSlice.reducer;

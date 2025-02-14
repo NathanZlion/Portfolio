@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { FloatingDock } from "./ui/floating-dock";
 import { cn } from "@/lib/utils";
-import { addApplication } from "@/lib/state/applications/application_states";
+import { openApplication } from "@/lib/state/applications/application_states";
 import { AllApps } from "@/lib/apps";
 
 
@@ -17,8 +17,8 @@ export default function Dock() {
                     id: app_id,
                     title: app.title,
                     icon: <AppIcon imageUri={app.icon.uri} alt={app.icon.alt} />,
-                    onIconClick: () => dispatch(addApplication({ id: app_id })),
-                    open: apps.some((window) => window.id === app_id && window.open),
+                    onIconClick: () => dispatch(openApplication({ id: app_id })),
+                    open: apps.some((app) => app.id === app_id && app.open),
                 }))}
             />
         </div>

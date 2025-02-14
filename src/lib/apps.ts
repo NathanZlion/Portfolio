@@ -1,6 +1,19 @@
-import HomeApp from "@/app/(Desktop)/(apps)/home/home_app";
-import { ApplicationState, SizingState } from "./state/applications/application_states";
+"use client";
 
+import HomeApp from "@/app/(Desktop)/(apps)/home/home_app";
+import { ApplicationState, SizingState } from "./state/applications/interfaces";
+import EducationApp from "@/app/(Desktop)/(apps)/education/education_app";
+import ExperienceApp from "@/app/(Desktop)/(apps)/experience/slack_app";
+import XCodeApp from "@/app/(Desktop)/(apps)/projects/github_app";
+import ContactApp from "@/app/(Desktop)/(apps)/contact/contact_app";
+import MusicApp from "@/app/(Desktop)/(apps)/hobbies/music_app";
+import PreviewApp from "@/app/(Desktop)/(apps)/resume/preview_app";
+import GithubApp from "@/app/(Desktop)/(apps)/github/github_app";
+import JournalApp from "@/app/(Desktop)/(apps)/blog/journal_app";
+import TerminalApp from "@/app/(Desktop)/(apps)/terminal/terminal_app";
+
+
+export type AppWindowStateInterface = Omit<AppWindowStateConfig, "with">;
 
 export interface AppInfo {
     id: string;
@@ -10,11 +23,13 @@ export interface AppInfo {
         color: string;
         alt: string;
     },
-    appComponent: React.FC;
+    appComponent: React.FC<AppWindowStateInterface>;
+    // q: how do you modify the above if you want everything but the method with in the React.FC
+    // a: you can use the Omit utility type to remove the method from the type here
     windowState: ApplicationState;
 }
 
-class AppWindowStateConfig implements ApplicationState {
+export class AppWindowStateConfig implements ApplicationState {
     constructor(
         public id: string,
         public x: number,
@@ -29,7 +44,17 @@ class AppWindowStateConfig implements ApplicationState {
 
 
     static default({ id }: { id: string }): AppWindowStateConfig {
-        return new AppWindowStateConfig(id, 0, 0, 800, 600, SizingState.FULL_SCREEN, 1, false, false);
+        return new AppWindowStateConfig(
+            id,
+            100,
+            400,
+            800,
+            600,
+            SizingState.FULL_SCREEN,
+            1,
+            false,
+            false
+        );
     }
 
     with(changes: Partial<AppWindowStateConfig>): AppWindowStateConfig {
@@ -79,22 +104,22 @@ const EducationApplication: AppInfo = {
         color: "#000000",
         alt: "Education",
     },
-    appComponent: HomeApp,
+    appComponent: EducationApp,
     windowState: AppWindowStateConfig
         .default({ id: "education" }),
 };
 
-const WorkExperienceApplication: AppInfo = {
-    id: "work_experience",
+const ExperienceApplication: AppInfo = {
+    id: "experience",
     title: "Work Experience",
     icon: {
         uri: "img/slack.png",
         color: "#000000",
         alt: "Work Experience",
     },
-    appComponent: HomeApp,
+    appComponent: ExperienceApp,
     windowState: AppWindowStateConfig
-        .default({ id: "work_experience" }),
+        .default({ id: "experience" }),
 };
 
 const ProjectsApplication: AppInfo = {
@@ -105,7 +130,7 @@ const ProjectsApplication: AppInfo = {
         color: "#000000",
         alt: "Projects",
     },
-    appComponent: HomeApp,
+    appComponent: XCodeApp,
     windowState: AppWindowStateConfig
         .default({ id: "projects" }),
 };
@@ -118,7 +143,7 @@ const ContactApplication: AppInfo = {
         color: "#000000",
         alt: "Contact",
     },
-    appComponent: HomeApp,
+    appComponent: ContactApp,
     windowState: AppWindowStateConfig
         .default({ id: "contact" }),
 };
@@ -131,22 +156,22 @@ const HobbyApplication: AppInfo = {
         color: "#000000",
         alt: "Hobby",
     },
-    appComponent: HomeApp,
+    appComponent: MusicApp,
     windowState: AppWindowStateConfig
         .default({ id: "hobby" }),
 };
 
-const ResumePreviewApplication: AppInfo = {
-    id: "resume_preview",
-    title: "Resume Preview",
+const PreviewApplication: AppInfo = {
+    id: "resume",
+    title: "My Resume",
     icon: {
         uri: "img/preview.png",
         color: "#000000",
         alt: "Resume Preview",
     },
-    appComponent: HomeApp,
+    appComponent: PreviewApp,
     windowState: AppWindowStateConfig
-        .default({ id: "resume_preview" }),
+        .default({ id: "resume" }),
 };
 
 
@@ -158,7 +183,7 @@ const GithubApplication: AppInfo = {
         color: "#000000",
         alt: "Github",
     },
-    appComponent: HomeApp,
+    appComponent: GithubApp,
     windowState: AppWindowStateConfig
         .default({ id: "github" }),
 };
@@ -172,7 +197,7 @@ const BlogApplication: AppInfo = {
         color: "#000000",
         alt: "Blog",
     },
-    appComponent: HomeApp,
+    appComponent: JournalApp,
     windowState: AppWindowStateConfig
         .default({ id: "blog" }),
 };
@@ -186,7 +211,7 @@ const TerminalApplication: AppInfo = {
         color: "#000000",
         alt: "Terminal",
     },
-    appComponent: HomeApp,
+    appComponent: TerminalApp,
     windowState: AppWindowStateConfig
         .default({ id: "terminal" }),
 };
@@ -197,11 +222,11 @@ export const AllApps: {
 } = {
     "home": HomeApplication,
     "education": EducationApplication,
-    "work_experience": WorkExperienceApplication,
+    "work_experience": ExperienceApplication,
     "projects": ProjectsApplication,
     "contact": ContactApplication,
     "hobby": HobbyApplication,
-    "resume_preview": ResumePreviewApplication,
+    "resume_preview": PreviewApplication,
     "github": GithubApplication,
     "blog": BlogApplication,
     "terminal": TerminalApplication,

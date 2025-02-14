@@ -39,7 +39,7 @@ const sanfransiscoPro = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "Nathnael Dereje",
+  title: "Nathnael Dereje Portfolio",
   description: "Macos inspired portfolio website of Nathnael Dereje, I am a software engineer based in Addis Ababa, Ethiopia.",
 };
 
