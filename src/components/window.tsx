@@ -66,12 +66,11 @@ export default function Window({
                     dispatch(setWindowPosition({ id, x: position.x, y: position.y }));
                 }}
                 className={cn(
-                    "bg-white bg-opacity-10 backdrop-blur-md shadow-lg border border-black border-opacity-10 p-2 border-none",
+                    "bg-white bg-opacity-75 backdrop-blur-md shadow-lg border border-opacity-10 border-none border-red-600",
                     sizingState === "full_screen" ? "rounded-none" : "rounded-lg",
                     className
                 )}
             >
-                {applicationState.id}
                 {children}
             </Rnd>
     );
