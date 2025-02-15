@@ -16,6 +16,7 @@ import { Calendar } from "@/components/ui/calendar";
 // import { useTheme } from "next-themes";
 import { Toggle } from "@radix-ui/react-toggle";
 import { cn } from "@/lib/utils";
+import { ButtonToggleStylish } from "./custom/stylish-toggle-button";
 
 export default function TopNav() {
     const [theme, setTheme] = useState<boolean>(true);
@@ -72,10 +73,10 @@ export default function TopNav() {
                 <MenubarMenu>
                     <MenubarTrigger> {<IconServer />} </MenubarTrigger>
                     <MenubarContent>
-                        <div className="p-4 grid grid-cols-1 gap-4">
+                        <div className="p-2 grid grid-cols-1 gap-4">
                             <div className="text-sm grid grid-cols-2 gap-4">
                                 <MenubarItem className="w-full">
-                                    <ToggleMenuItem
+                                    <ButtonToggleStylish
                                         title={"Dark Mode"}
                                         onPressed={toggleTheme}
                                         active={theme}
@@ -83,7 +84,7 @@ export default function TopNav() {
                                     />
                                 </MenubarItem>
                                 <MenubarItem>
-                                    <ToggleMenuItem
+                                    <ButtonToggleStylish
                                         title={"Animations"}
                                         onPressed={() => { }}
                                         active={theme}
@@ -93,7 +94,7 @@ export default function TopNav() {
                             </div>
                             <div className="text-sm grid grid-cols-1">
                                 <MenubarItem className="w-full">
-                                    <ToggleMenuItem
+                                    <ButtonToggleStylish
                                         title={"Notch"}
                                         onPressed={toggleNotch}
                                         active={showNotch}
@@ -129,31 +130,6 @@ export default function TopNav() {
         </div>
     );
 }
-
-export const ToggleMenuItem = ({
-    title,
-    onPressed,
-    active,
-    leading,
-}: {
-    title: string;
-    onPressed: (pressed: boolean) => void;
-    active: boolean;
-    leading?: React.ReactNode;
-}) => {
-    return (
-        <Toggle pressed={active} onPressedChange={onPressed} title={title} className="p-4 border-none w-full"
-            onClick={(event) => event.stopPropagation()}
-        >
-            <div className="flex items-center space-x-2">
-                <span className={cn("p-1 rounded-full", active ? "bg-accent-foreground/20" : "bg-accent")}>
-                    {leading}
-                </span>
-                <p className="text-black dark:text-white">{title}</p>
-            </div>
-        </Toggle >
-    );
-};
 
 const Notch = () => {
     return (

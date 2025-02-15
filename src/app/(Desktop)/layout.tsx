@@ -24,10 +24,10 @@ export default function DesktopLayout() {
     }, [apps]);
 
     return (
-        <section className="relative h-screen max-h-screen w-full bg-[url('/img/wallpaper.webp')] bg-cover bg-center overflow-hidden">
+        <section className="relative h-screen max-h-screen w-full bg-[url('/img/wallpaper.webp')] bg-cover bg-center overflow-y-hidden">
             <TopNav />
 
-            <section className="h-full w-full outline outline-green" id="desktop-wrapper">
+            <section className="h-full w-full" id="desktop-wrapper">
                 {Object.entries(apps).map(
                     ([id, appState]) => {
                         const AppComponent = AllApps[id]?.appComponent;

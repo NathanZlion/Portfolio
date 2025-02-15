@@ -6,6 +6,7 @@ import { TOP_NAV_HEIGHT, setWindowPosition, setWindowSize } from "@/lib/state/ap
 import { cn } from "@/lib/utils";
 import { Rnd } from "react-rnd";
 import { ApplicationState } from "@/lib/state/applications/interfaces";
+import React from "react";
 
 export default function Window({
     applicationState,
@@ -20,6 +21,8 @@ export default function Window({
 
     // Track browser window size for full screen mode
     const [winSize, setWinSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+    const isFullScreen = applicationState.sizingState === "full_screen";
+    const [mouseInDraggableZone, setMouseInDraggableZone] = useState(false);
 
     const appState = useAppSelector((state) => state.applicationReducer.apps[applicationState.id]);
     if (!appState) {
@@ -56,8 +59,8 @@ export default function Window({
                 minHeight={100}
                 bounds="parent"
                 style={{ zIndex }}
-                disableDragging={sizingState === "full_screen"}
-                enableResizing={sizingState !== "full_screen"}
+                disableDragging={isFullScreen || !mouseInDraggableZone}
+                enableResizing={!isFullScreen}
                 onDragStop={(_e, d) => {
                     dispatch(setWindowPosition({ id, x: d.x, y: d.y }));
                 }}
@@ -66,12 +69,12 @@ export default function Window({
                     dispatch(setWindowPosition({ id, x: position.x, y: position.y }));
                 }}
                 className={cn(
-                    "bg-white bg-opacity-75 backdrop-blur-md shadow-lg border border-opacity-10 border-none border-red-600",
-                    sizingState === "full_screen" ? "rounded-none" : "rounded-lg",
+                    "backdrop-blur-md shadow-lg overflow-hidden",
+                    isFullScreen ? "rounded-none" : "rounded-2xl",
                     className
                 )}
             >
-                {children}
+                {React.cloneElement(children as React.ReactElement, { setMouseInDraggableZone })}
             </Rnd>
     );
 }

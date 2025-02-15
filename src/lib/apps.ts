@@ -23,7 +23,7 @@ export interface AppInfo {
         color: string;
         alt: string;
     },
-    appComponent: React.FC<AppWindowStateInterface>;
+    appComponent: React.FC<AppWindowStateInterface & { setMouseInDraggableZone?: (val: boolean) => void }>;
     // q: how do you modify the above if you want everything but the method with in the React.FC
     // a: you can use the Omit utility type to remove the method from the type here
     windowState: ApplicationState;

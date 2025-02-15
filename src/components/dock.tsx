@@ -1,19 +1,33 @@
-"use client"
+"use client";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { FloatingDock } from "./ui/floating-dock";
 import { cn } from "@/lib/utils";
 import { openApplication } from "@/lib/state/applications/application_states";
 import { AllApps } from "@/lib/apps";
-
+import { motion } from "framer-motion";
+import React from "react";
 
 export default function Dock() {
-    const apps = useAppSelector((state) => state.applicationReducer.apps);
     const dispatch = useAppDispatch();
 
+    const apps = useAppSelector((state) => state.applicationReducer.apps);
+    const activeAppId = useAppSelector((state) => state.applicationReducer.activeApp);
+    const openAppsExist = Object.values(apps).some((app) => app.open);
+    const activeAppIsFullscreen = activeAppId && apps[activeAppId]?.sizingState === "full_screen";
+    console.log(activeAppIsFullscreen, activeAppId);
+
+    // Dynamic Y position for animation
+    const calculatedY = activeAppIsFullscreen ? 100 : openAppsExist ? 50 : 0;
+
     return (
-        <div className="flex flex-col gap-2 items-end lg:items-center justify-center w-full
-            h-fit bottom-6 absolute p-2 inset-x-0">
+        <motion.div
+            className={cn("flex flex-col gap-2 items-end lg:items-center justify-center w-full h-fit bottom-6 absolute p-2 inset-x-0 z-50")}
+            initial={{ y: 0 }}
+            animate={{ y: calculatedY }}
+            whileHover={{ y: 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        >
             <FloatingDock
                 items={Object.entries(AllApps).map(([app_id, app]) => ({
                     id: app_id,
@@ -23,7 +37,7 @@ export default function Dock() {
                     open: apps[app.id]?.open,
                 }))}
             />
-        </div>
+        </motion.div>
     );
 }
 
@@ -40,8 +54,6 @@ const AppIcon = ({
         <img
             src={imageUri}
             alt={alt}
-            width={0}
-            height={0}
             className={cn("w-full h-full object-cover p-0 m-0", className)}
         />
     );

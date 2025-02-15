@@ -1,6 +1,6 @@
 'use client';
 
-import { WindowTopBar } from "@/components/application/common-components";
+import { WindowTopBar } from "@/components/application/common-app-components";
 import { AppWindowStateInterface } from "@/lib/apps";
 import { useAppDispatch } from "@/lib/hooks";
 import { closeApplication, minimizeScreen, toggleFullScreen } from "@/lib/state/applications/application_states";

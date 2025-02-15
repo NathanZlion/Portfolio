@@ -18,7 +18,7 @@ export interface AllApplicationsState {
 
 const initialState: AllApplicationsState = {
     apps: {},
-    activeApp: null,
+    activeApp: "home",
 };
 
 export const WindowSlice = createSlice({
@@ -39,7 +39,6 @@ export const WindowSlice = createSlice({
             }
 
             state.apps[action.payload.id] = { ...action.payload.appState };
-            state.activeApp = action.payload.id;
         },
         openApplication: (state: AllApplicationsState, action: PayloadAction<{ id: string }>) => {
             const appId = action.payload.id;
@@ -101,11 +100,12 @@ export const WindowSlice = createSlice({
             console.log("setting window position", appId);
 
             // snap to top
-            if (action.payload.y < TOP_NAV_HEIGHT) {
-                action.payload.y = TOP_NAV_HEIGHT;
-            }
             if (action.payload.y < FULL_SCREEN_THRESHOLD) {
                 state.apps[appId].sizingState = "full_screen";
+            }
+
+            if (action.payload.y < TOP_NAV_HEIGHT) {
+                action.payload.y = TOP_NAV_HEIGHT;
             }
 
             state.apps[appId].x = action.payload.x;
