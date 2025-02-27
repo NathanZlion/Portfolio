@@ -1,24 +1,20 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import { ModeToggle } from "@/components/ui/mode_toggle";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
-export const metadata: Metadata = {
-  title: "Nathnael Dereje",
-  description: "Nathnael Dereje Portfolio Website",
-  keywords: ["Software Engineer"]
-};
-
 
 const dotGothic16 = localFont(
   {
@@ -44,17 +40,41 @@ const AzeretMono = localFont(
   }
 )
 
+export const metadata: Metadata = {
+  title: "Nathnael Dereje Portfolio",
+  description: "Nathnael Dereje Portfolio Website",
+  keywords: ["Software Engineer"]
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressContentEditableWarning suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${AzeretMono.variable} ${dotGothic16.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Nav logo goes here */}
+
+          {/*  */}
+          <ModeToggle
+            orientation={"vertical"}
+            className="fixed top-1/2 border right-0"
+          />
+
+          {children}
+
+          {/* sidebar goes here */}
+
+        </ThemeProvider>
       </body>
     </html>
   );
