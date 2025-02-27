@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ModeToggle } from "@/components/ui/mode_toggle";
+import { Logo } from "./components/logo-component";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -62,16 +63,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Nav logo goes here */}
-
-          {/*  */}
-          <ModeToggle
-            orientation={"vertical"}
-            className="fixed top-1/2 border right-0"
-          />
-
+          <Logo />
+          <ModeToggle orientation={"vertical"} />
           {children}
-
           {/* sidebar goes here */}
 
         </ThemeProvider>

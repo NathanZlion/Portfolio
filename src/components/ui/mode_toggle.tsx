@@ -4,14 +4,20 @@ import { useTheme } from "next-themes"
 import { forwardRef, useEffect, useState } from "react"
 import { cva, VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { useIsMobile } from "@/hooks/use-mobile"
+import { Moon, Sun } from "lucide-react"
 
 const modeToggleVariants = cva(
-    "shadow-lg text-base w-28 h-8 flex items-center bg-gray-300 dark:bg-gray-800 rounded-full cursor-pointer p-0",
+    "fixed shadow-lg text-base w-28 h-8 flex items-center bg-gray-300 dark:bg-gray-800 rounded-full cursor-pointer p-0 top-3/4",
     {
         variants: {
             orientation: {
                 horizontal: "",
                 vertical: "-rotate-90",
+            },
+            isMobile: {
+                true: "right-0",
+                false: "left-0",
             },
         },
         defaultVariants: {
@@ -54,6 +60,7 @@ const ModeToggle = forwardRef<HTMLDivElement, ModeToggleProps>(
     ({ className, orientation, ...props }, ref) => {
         const { theme, setTheme } = useTheme()
         const [mounted, setMounted] = useState(false)
+        const isMobile = useIsMobile()
 
         useEffect(() => {
             setMounted(true)
@@ -65,26 +72,47 @@ const ModeToggle = forwardRef<HTMLDivElement, ModeToggleProps>(
             setTheme(theme === "dark" ? "light" : "dark")
         }
 
+        const isLight = theme === "light"
+
         return (
             <div
                 ref={ref}
-                className={cn(className, modeToggleVariants({ orientation }))}
+                className={cn(className, modeToggleVariants({ orientation, isMobile: isMobile }))}
                 onClick={toggleTheme}
                 {...props}
             >
                 <div className="w-full h-full flex items-center justify-between font-medium text-black dark:text-white">
-                    <div className="w-full text-center">Dark</div>
-                    <div className="w-full text-center">Light</div>
+                    {isMobile ? (
+                        <>
+                            <div className="flex justify-center items-center w-full">
+                                <Moon className="text-blue-400" size={20} />
+                            </div>
+                            <div className="flex justify-center items-center w-full">
+                                <Sun className="text-yellow-500" size={20} />
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="w-full text-center">Dark</div>
+                            <div className="w-full text-center">Light</div>
+                        </>
+                    )}
                 </div>
+
 
                 <div
                     className={cn(
                         overlayVariants({
                             orientation,
-                            theme: theme === "light" ? "light" : "dark",
+                            theme: isLight ? "light" : "dark",
                         })
                     )}>
-                    <span>{theme === "light" ? "Light" : "Dark"}</span>
+
+                    {
+                        isMobile ?
+                            isLight ? <Sun className="text-yellow-500" size={20} /> : <Moon className="text-blue-400" size={20} /> :
+                            <span className="w-full text-center">{isLight ? "Light" : "Dark"}</span>
+                    }
                 </div>
             </div>
         )
