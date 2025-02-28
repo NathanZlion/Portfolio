@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ModeToggle } from "@/components/ui/mode_toggle";
 import { Logo } from "./components/logo-component";
+import { NavBar } from "./components/nav-bar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -55,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressContentEditableWarning suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${AzeretMono.variable} ${dotGothic16.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${AzeretMono.variable} ${dotGothic16.variable} font-azeretMono antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -63,13 +65,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Logo />
-          <ModeToggle orientation={"vertical"} />
-          {children}
-          {/* sidebar goes here */}
-
+          <TooltipProvider delayDuration={50} >
+            <Logo />
+            <ModeToggle orientation={"vertical"} />
+            {children}
+            {/* sidebar goes here */}
+            <NavBar />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
-    </html>
+    </html >
   );
 }

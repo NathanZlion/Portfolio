@@ -8,7 +8,7 @@ import { useIsMobile } from "@/hooks/use-mobile"
 import { Moon, Sun } from "lucide-react"
 
 const modeToggleVariants = cva(
-    "fixed shadow-lg text-base w-28 h-8 flex items-center bg-gray-300 dark:bg-gray-800 rounded-full cursor-pointer p-0 top-3/4",
+    "fixed shadow-lg text-base w-28 h-8 flex items-center bg-gray-300 dark:bg-gray-800 rounded-full cursor-pointer p-0 top-3/4 z-50",
     {
         variants: {
             orientation: {
@@ -30,14 +30,8 @@ const overlayVariants = cva(
     "absolute w-1/2 h-full bg-white dark:bg-black rounded-full shadow-md flex items-center justify-center",
     {
         variants: {
-            orientation: {
-                horizontal: "",
-                vertical: "",
-            },
-            theme: {
-                light: "",
-                dark: "",
-            },
+            orientation: { horizontal: "", vertical: "" },
+            theme: { light: "", dark: "" },
         },
         compoundVariants: [
             { orientation: "horizontal", theme: "light", class: "translate-x-14" },

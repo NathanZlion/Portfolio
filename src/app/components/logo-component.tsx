@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 
 
 const logoVariants = cva(
-    "fixed top-0 left-0 z-50 p-4 bg-background w-fit",
+    "fixed top-0 left-5 z-50 p-4 bg-background w-fit",
     {
         variants: {
             variant: {
@@ -29,7 +29,7 @@ const Logo = React.forwardRef<HTMLDivElement, LogoProps>(
             <header className={cn(logoVariants({ variant, className }))} ref={ref} {...props}>
                 <div className="flex items-center gap-2">
                     <span className="text-2xl font-bold font-dotGothic bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500">
-                        &lt;- Nathnael Dereje
+                        &lt;-Nath
                     </span>
                 </div>
             </header>
