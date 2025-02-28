@@ -10,7 +10,6 @@ export default function FollowingCursor() {
     const { x, y } = useMousePosition();
     const isMobile = useIsMobile()
 
-
     const SIZE = 40;
 
     const cursorX = useMotionValue(x - SIZE / 2);
@@ -19,14 +18,17 @@ export default function FollowingCursor() {
     cursorX.set(x - SIZE / 2);
     cursorY.set(y - SIZE / 2);
 
-    if (isMobile) return null;
+    const smoothX = useSpring(cursorX, { stiffness: 250, damping: 20, mass: 0.5 });
+    const smoothY = useSpring(cursorY, { stiffness: 250, damping: 20, mass: 0.5 });
+
+    if (isMobile) return null
 
     return (
         <motion.div
             transition={{ type: "tween", ease: "backOut" }}
             style={{
-                x: useSpring(cursorX, { stiffness: 250, damping: 20, mass: 0.5 }),
-                y: useSpring(cursorY, { stiffness: 250, damping: 20, mass: 0.5 }),
+                x: smoothX,
+                y: smoothY,
 
             }}
             className={cn(
