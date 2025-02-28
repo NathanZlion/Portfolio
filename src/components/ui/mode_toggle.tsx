@@ -71,6 +71,7 @@ const ModeToggle = forwardRef<HTMLDivElement, ModeToggleProps>(
         return (
             <div
                 ref={ref}
+                key={"mode-toggle"}
                 className={cn(className, modeToggleVariants({ orientation, isMobile: isMobile }))}
                 onClick={toggleTheme}
                 {...props}

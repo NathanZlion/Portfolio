@@ -8,10 +8,13 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beam-wi
 
 export const HeroSection = ({ className }: { className?: string }) => {
     return (
-        <BackgroundBeamsWithCollision className="bg-transparent h-[88vh] w-full border-b-2 border-gray-400" key={"hero-section"}>
+        <BackgroundBeamsWithCollision
+            className="bg-transparent h-[88vh] w-full border-b-2 border-gray-400 overflow-x-clip overflow-y-hidden"
+            key={"hero-section"}
+        >
             <section
                 className={cn(
-                    "relative flex flex-col items-center justify-center overflow-hidden h-full w-full",
+                    "relative flex flex-col items-center justify-center h-full w-full",
                     className
                 )}
             >
@@ -24,6 +27,7 @@ export const HeroSection = ({ className }: { className?: string }) => {
                     </p>
                 </div>
 
+                {/* scroll down */}
                 <div className="absolute bottom-4 right-0">
                     <DotLottieReact
                         src="https://lottie.host/82628605-0013-4c3b-895f-eeb91856e7b4/vUS0Q1IfjL.json"
@@ -32,6 +36,7 @@ export const HeroSection = ({ className }: { className?: string }) => {
                         autoplay
                     />
                 </div>
+
             </section>
         </BackgroundBeamsWithCollision>
     );

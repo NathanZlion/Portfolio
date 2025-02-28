@@ -6,6 +6,7 @@ import { ModeToggle } from "@/components/ui/mode_toggle";
 import { Logo } from "../components/logo-component";
 import { NavBar } from "../components/nav-bar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import FollowingCursor from "@/components/following-cursor";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -59,6 +60,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${AzeretMono.variable} ${dotGothic16.variable} font-azeretMono antialiased`}
       >
+        {/* cursor animation */}
+        <FollowingCursor />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
