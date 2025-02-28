@@ -3,8 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ModeToggle } from "@/components/ui/mode_toggle";
-import { Logo } from "./components/logo-component";
-import { NavBar } from "./components/nav-bar";
+import { Logo } from "../components/logo-component";
+import { NavBar } from "../components/nav-bar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = localFont({
