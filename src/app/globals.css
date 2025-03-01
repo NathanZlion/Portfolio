@@ -69,7 +69,6 @@
 }
 
 
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -77,5 +76,13 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  .title {
+    @apply text-2xl text-center w-full md:text-7xl;
+  }
+
+  .sub-title {
+    @apply text-xl text-center md:text-4xl;
   }
 }

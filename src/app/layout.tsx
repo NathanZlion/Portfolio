@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { ModeToggle } from "@/components/ui/mode_toggle";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Logo } from "../components/logo-component";
 import { NavBar } from "../components/nav-bar";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -60,6 +60,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${AzeretMono.variable} ${dotGothic16.variable} font-azeretMono antialiased`}
       >
+
         {/* cursor animation */}
         <FollowingCursor />
 
@@ -71,9 +72,8 @@ export default function RootLayout({
         >
           <TooltipProvider delayDuration={50} >
             <Logo />
-            <ModeToggle orientation={"vertical"} />
+            <ModeToggle />
             {children}
-            {/* sidebar goes here */}
             <NavBar />
           </TooltipProvider>
         </ThemeProvider>

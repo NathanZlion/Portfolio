@@ -9,7 +9,7 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beam-wi
 export const HeroSection = ({ className }: { className?: string }) => {
     return (
         <BackgroundBeamsWithCollision
-            className="bg-transparent h-[88vh] w-full border-b-2 border-gray-400 overflow-x-clip overflow-y-hidden"
+            className="bg-transparent h-[85vh] w-full border-b-2 border-gray-400 overflow-x-clip overflow-y-visible"
             key={"hero-section"}
         >
             <section
