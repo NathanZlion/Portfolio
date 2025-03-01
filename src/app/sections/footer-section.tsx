@@ -2,10 +2,11 @@
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
-import { IconBrandTelegram, IconCopy, IconMail, IconCheck, IconBrandGithub, IconBrandLinkedin, IconNotebook, IconHeart } from "@tabler/icons-react";
+import { IconBrandTelegram, IconCopy, IconMail, IconCheck, IconBrandGithub, IconBrandLinkedin, IconNotebook, IconHeart, IconBrandLeetcode } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
 import { IconMediumNew } from "@/components/icon-medium-new";
+import { IconCodeforce } from "@/components/icon-codeforces";
 
 
 export const FooterSection = () => {
@@ -48,9 +49,14 @@ export const FooterSection = () => {
             link: "https://nathanzlion.github.io/",
         },
         {
-            icon: <IconNotebook size={30} />,
-            name: "Blog",
-            link: "https://nathanzlion.github.io/",
+            icon: <IconBrandLeetcode size={30} />,
+            name: "Leetcode",
+            link: "https://leetcode.com/Nathan_Zlion/",
+        },
+        {
+            icon: <IconCodeforce />,
+            name: "Codeforces",
+            link: "https://codeforces.com/profile/Nathan_D",
         }
     ];
 
