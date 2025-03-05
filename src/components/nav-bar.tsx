@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -10,52 +10,64 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip
 export const NavBar = ({ className }: { className?: string }) => {
     const isMobile = useIsMobile();
     const [visible, setVisible] = useState(true);
+    const lastScrollY = useRef(0);
+    const SCROLL_SENSITIVITY = -5;
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY < 50 || isMobile) {
+            const currentScrollY = window.scrollY;
+            const delta = currentScrollY - lastScrollY.current;
+
+            if (isMobile || currentScrollY < 50) {
                 setVisible(true);
-            } else {
+            } else if (delta > 0) {
+                // Scrolling down -> hide
                 setVisible(false);
+            } else if (delta < SCROLL_SENSITIVITY) {
+                // Scrolling up -> show
+                setVisible(true);
             }
+
+            lastScrollY.current = currentScrollY;
         };
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, [isMobile]);
 
+
     const navItems: { name: string; link: string; icon: JSX.Element }[] = [
         {
             name: "Home",
             link: "/",
-            icon: <HomeIcon />
+            icon: <HomeIcon size={28} />
         },
         {
             name: "Skills",
             link: "#skills",
-            icon: <CodeIcon />,
+            icon: <CodeIcon size={28} />,
         },
         {
             name: "Projects",
             link: "#projects",
-            icon: <ConstructionIcon />,
+            icon: <ConstructionIcon size={28} />,
         },
         {
             name: "Education",
             link: "#education",
-            icon: <Book />,
+            icon: <Book size={28} />,
         },
         {
             name: "Experience",
             link: "#experience",
-            icon: <GemIcon />,
+            icon: <GemIcon size={28} />,
         },
     ];
 
     return (
         <div
             className={cn(
-                "flex gap-3  backdrop-blur-md max-w-fit fixed inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-md md:rounded-full bg-background/80 z-[5000] p-2 lg:p-5 items-center justify-center space-x-4 transition-all duration-200 font-extrabold md:outline md:outline-slate-900/15",
+                "flex p-3 md:p-2  gap-6 backdrop-blur-md w-fit  fixed inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-md md:rounded-full bg-background/80 z-[50] lg:p-5 items-center justify-center space-x-4 transition-all duration-200 font-extrabold md:outline md:outline-slate-900/15",
                 isMobile ? "bottom-5" : "top-5",
                 className,
                 visible ? "opacity-100" : "opacity-0 -translate-y-10"
@@ -77,7 +89,12 @@ export const NavBar = ({ className }: { className?: string }) => {
                     </TooltipTrigger>
                     <TooltipContent>
                         {/* shows tooltip only on mobile */}
-                        {isMobile && navItem.name}
+                        {
+                            isMobile &&
+                            <span className="bg-background">
+                                {navItem.name}
+                            </span>
+                        }
                     </TooltipContent>
                 </Tooltip>
             ))

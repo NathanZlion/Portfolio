@@ -2,16 +2,27 @@
 
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 
 export const IconCodeforce = ({ className }: { className?: string }) => {
-    const { theme } = useTheme()
+    const { resolvedTheme } = useTheme()
+    const [fill, setFill] = useState("#000000")
+
+    // use effect to set fill
+    useEffect(() => {
+        if (resolvedTheme === "dark") {
+            setFill("#ffffff")
+        } else {
+            setFill("#000000")
+        }
+    }, [resolvedTheme])
 
     return (
         <div className={cn(className)}>
             <svg
                 className="w-8 h-8"
-                fill={theme === "dark" ? "#ffffff" : "#000000"}
+                fill={fill}
                 viewBox="0 0 24 24"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg">

@@ -69,7 +69,7 @@ export const FooterSection = () => {
                     <div className="rounded-md flex flex-col gap-5 h-full w-full ">
                         <div className="text-lg md:text-3xl md:text-center text-wrap font-bold">Let's Work Together</div>
 
-                        <div className="text-center md:text-xl">
+                        <div className="md:text-center md:text-xl">
                             Reach out to me!
                         </div>
 

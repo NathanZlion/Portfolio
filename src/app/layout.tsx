@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import 'react-medium-image-zoom/dist/styles.css'
 import { ThemeProvider } from "next-themes";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+import { ModeToggle } from "@/components/mode-toggle";
 import { Logo } from "../components/logo-component";
-import { NavBar } from "../components/nav-bar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import FollowingCursor from "@/components/following-cursor";
 
@@ -74,7 +74,6 @@ export default function RootLayout({
             <Logo />
             <ModeToggle />
             {children}
-            <NavBar />
           </TooltipProvider>
         </ThemeProvider>
       </body>

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 
 
 const logoVariants = cva(
-    "fixed top-0 left-5 z-50 p-4 bg-background w-fit",
+    "fixed top-0 left-5 z-50 p-4 w-fit",
     {
         variants: {
             variant: {

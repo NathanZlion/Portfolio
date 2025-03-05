@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useTheme } from "next-themes"
 import { forwardRef, useEffect, useState } from "react"
 import { cva, VariantProps } from "class-variance-authority"
@@ -9,7 +8,7 @@ import { useIsMobile } from "@/hooks/use-mobile"
 import { Moon, Sun } from "lucide-react"
 
 const modeToggleVariants = cva(
-    "select-none fixed shadow-lg flex items-center justify-between bg-gray-200 dark:bg-gray-900 rounded-full cursor-pointer z-50 -rotate-90 p-0 hover:scale-105 transition-transform duration-300 ease-in-out shadow-lg",
+    "select-none fixed shadow-lg flex items-center justify-between bg-gray-200 dark:bg-gray-900 rounded-full cursor-pointer z-50 -rotate-90 p-0 hover:scale-[101%] transition-transform duration-300 ease-in-out shadow-lg",
     {
         variants: {
             isMobile: {

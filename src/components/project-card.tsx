@@ -3,26 +3,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "motion/react";
 import { ScrollBar } from "./ui/scroll-area";
+import { Project } from "@/lib/projects";
 
-
-export type Project = {
-    id: string;
-    title: string;
-    shortDescription: string;
-    thumbnail: string;
-    tags: string[];
-    details: {
-        overview: string;
-        features: string[];
-        techStack: string[];
-        challenges?: { problem: string; solution: string }[];
-        links: {
-            demo?: string;
-            github?: string;
-            caseStudy?: string;
-        };
-    };
-};
 
 
 export const ProjectCard = ({
@@ -35,12 +17,9 @@ export const ProjectCard = ({
     onClick?: () => void,
 }) => {
 
-
-    console.log(project.tags);
-
     return (
         <motion.div
-            className={cn("bg-green-500 ", className)}
+            className={cn("cursor-pointer group outline outline-primary/10 rounded-2xl hover:outline-primary/40 duration-300 p-1 flex flex-col max-h-[30rem]", className)}
             onClick={onClick}
             layoutId={`project_${project.id}_card`}
         >
@@ -49,25 +28,27 @@ export const ProjectCard = ({
                 layoutId={`project_${project.id}_thumbnail`}
                 src={project.thumbnail}
                 alt={project.title}
-                className="w-full h-40 object-cover"
+                className="w-full h-40 object-cover rounded-xl filter grayscale group-hover:filter-none duration-300"
             />
 
-            <motion.section className="p-5">
+            <motion.section className="p-5 flex-1 flex flex-col justify-between gap-4">
                 <motion.p
-                    className="text-lg font-bold"
+                    className="text-base group-hover:font-extrabold  group-hover:underline duration-300"
                     layoutId={`project_${project.id}_title`}
                 >
                     {project.title}
                 </motion.p>
 
-                <motion.p className="text-sm">{project.shortDescription}</motion.p>
+                <motion.p className="text-sm flex-1 overflow-ellipsis">{project.description}</motion.p>
 
-                <ScrollArea className="w-full">
-                    <motion.div className="flex flex-nowrap gap-2">
+                <ScrollArea className="w-full mt-5">
+                    <motion.div className="flex flex-nowrap gap-2"
+                        layoutId={`project_${project.id}_badges`}
+                    >
                         {
-                            project.tags.map((tag, index) => (
+                            project.tags?.map((tag, index) => (
                                 <motion.span key={`${project.title}_tag_${index}`}>
-                                    <Badge> {tag} </Badge>
+                                    <Badge className="text-nowrap"> {tag} </Badge>
                                 </motion.span>
                             ))
                         }
