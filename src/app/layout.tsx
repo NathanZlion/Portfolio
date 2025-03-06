@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import 'react-medium-image-zoom/dist/styles.css'
 import { ThemeProvider } from "next-themes";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Logo } from "../components/logo-component";
@@ -56,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressContentEditableWarning suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${AzeretMono.variable} ${dotGothic16.variable} font-azeretMono antialiased`}
       >

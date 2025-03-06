@@ -21,7 +21,7 @@ export default function FollowingCursor() {
     const smoothX = useSpring(cursorX, { stiffness: 250, damping: 20, mass: 0.5 });
     const smoothY = useSpring(cursorY, { stiffness: 250, damping: 20, mass: 0.5 });
 
-    if (isMobile) return null
+    if (isMobile) return <></>;
 
     return (
         <motion.div

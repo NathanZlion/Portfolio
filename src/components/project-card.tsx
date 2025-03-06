@@ -28,7 +28,7 @@ export const ProjectCard = ({
                 layoutId={`project_${project.id}_thumbnail`}
                 src={project.thumbnail}
                 alt={project.title}
-                className="w-full h-40 object-cover rounded-xl filter grayscale group-hover:filter-none duration-300"
+                className="w-full h-40 object-cover rounded-xl filter md:grayscale-[45%] group-hover:filter-none duration-300"
             />
 
             <motion.section className="p-5 flex-1 flex flex-col justify-between gap-4">

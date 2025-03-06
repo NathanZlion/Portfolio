@@ -1,11 +1,12 @@
-"use client";
+'use client'
 
 import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { Link } from 'react-scroll';
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Book, CodeIcon, ConstructionIcon, GemIcon, HomeIcon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
+
 
 export const NavBar = ({ className }: { className?: string }) => {
     const isMobile = useIsMobile();
@@ -39,27 +40,27 @@ export const NavBar = ({ className }: { className?: string }) => {
     const navItems: { name: string; link: string; icon: JSX.Element }[] = [
         {
             name: "Home",
-            link: "/",
+            link: "hero",
             icon: <HomeIcon size={28} />
         },
         {
             name: "Skills",
-            link: "#skills",
+            link: "skills",
             icon: <CodeIcon size={28} />,
         },
         {
             name: "Projects",
-            link: "#projects",
+            link: "projects",
             icon: <ConstructionIcon size={28} />,
         },
         {
             name: "Education",
-            link: "#education",
+            link: "education",
             icon: <Book size={28} />,
         },
         {
             name: "Experience",
-            link: "#experience",
+            link: "experience",
             icon: <GemIcon size={28} />,
         },
     ];
@@ -77,14 +78,20 @@ export const NavBar = ({ className }: { className?: string }) => {
                 <Tooltip key={`link=${idx}`}>
                     <TooltipTrigger>
                         <Link
-                            href={navItem.link}
                             className={cn(
                                 "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
                             )}
+                            to={navItem.link}
+                            smooth={true}
+                            duration={500}
                         >
                             {isMobile && <span className="block">{navItem.icon}</span>}
 
-                            <span className="hidden md:block sm:text-sm">{navItem.name}</span>
+                            {!isMobile &&
+                                <span className="sm:text-sm">
+                                    {navItem.name}
+                                </span>
+                            }
                         </Link>
                     </TooltipTrigger>
                     <TooltipContent>
