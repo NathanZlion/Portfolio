@@ -1,9 +1,5 @@
 "use client";
 
-import { IconDart } from "@/components/icon-dart";
-import { IconBrandGoFiber } from "@/components/icon-fiber";
-import { IconBrandFastAPI } from "@/components/icon-fastapi";
-import { IconJava } from "@/components/icon-java";
 import { cn } from "@/lib/utils";
 import {
     IconBrandAngularFilled,
@@ -23,12 +19,19 @@ import {
     IconBrandTypescript
 } from "@tabler/icons-react";
 import { Element } from "react-scroll";
-import { IconBrandReddis } from "@/components/icon-redis";
-import { IconBrandNeo4j } from "@/components/icon-neo4j";
-import { IconBrandPostgres } from "@/components/icon-postgres";
-import { IconBrandPytorch } from "@/components/icon-pytorch";
-import { IconBrandTensorflow } from "@/components/icon-tensorflow";
-import { IconBrandRabbitMQ } from "@/components/icon-rabbitmq";
+
+import {
+    IconDart,
+    IconBrandGoFiber,
+    IconJava,
+    IconBrandReddis,
+    IconBrandNeo4j,
+    IconBrandPostgres,
+    IconBrandPytorch,
+    IconBrandTensorflow,
+    IconBrandRabbitMQ,
+    IconBrandFastAPI,
+} from "@/components/icons/index"
 
 
 export const SkillsSection = ({ className }: { className?: string }) => {

@@ -2,11 +2,20 @@
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
-import { IconBrandTelegram, IconCopy, IconMail, IconCheck, IconBrandGithub, IconBrandLinkedin, IconNotebook, IconHeart, IconBrandLeetcode } from "@tabler/icons-react";
+import {
+    IconBrandTelegram,
+    IconCopy,
+    IconMail,
+    IconCheck,
+    IconBrandGithub,
+    IconBrandLinkedin,
+    IconNotebook,
+    IconHeart,
+    IconBrandLeetcode,
+} from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
-import { IconMediumNew } from "@/components/icon-medium-new";
-import { IconCodeforce } from "@/components/icon-codeforces";
+import { IconMediumNew, IconCodeforce } from "@/components/icons/index"
 
 
 export const FooterSection = () => {

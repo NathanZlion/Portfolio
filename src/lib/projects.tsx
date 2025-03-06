@@ -1,6 +1,6 @@
 import { Section } from "@/components/sections";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { IconArticle, IconLink, IconBrandGithub, IconSitemapFilled, IconLinkMinus, IconLayersLinked, IconExternalLink, IconDatabase } from "@tabler/icons-react";
+import { IconArticle, IconBrandGithub, IconExternalLink, IconDatabase } from "@tabler/icons-react";
 
 
 export interface Project {
