@@ -52,7 +52,6 @@ type sectionComponentProps<T extends Section> = {
     section: T;
     project: Project;
     index?: number;
-    props?: any;
 };
 
 export const SectionComponents: React.FC<{
