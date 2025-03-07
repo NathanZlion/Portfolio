@@ -39,7 +39,7 @@ export const NavBar = ({ className }: { className?: string }) => {
 
     const navItems: { name: string; link: string; icon: JSX.Element }[] = [
         {
-            name: "Home",
+            name: "Hero",
             link: "hero",
             icon: <HomeIcon size={28} />
         },
@@ -47,6 +47,11 @@ export const NavBar = ({ className }: { className?: string }) => {
             name: "Skills",
             link: "skills",
             icon: <CodeIcon size={28} />,
+        },
+        {
+            name: "Experience",
+            link: "experience",
+            icon: <GemIcon size={28} />,
         },
         {
             name: "Projects",
@@ -57,11 +62,6 @@ export const NavBar = ({ className }: { className?: string }) => {
             name: "Education",
             link: "education",
             icon: <Book size={28} />,
-        },
-        {
-            name: "Experience",
-            link: "experience",
-            icon: <GemIcon size={28} />,
         },
     ];
 

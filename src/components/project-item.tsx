@@ -30,6 +30,7 @@ import { Project } from "@/lib/projects";
 import { Separator } from "../components/ui/separator";
 import { Button } from "./ui/button";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
+import Image from "next/image";
 
 
 export const ProjectItem = (
@@ -64,8 +65,15 @@ export const ProjectItem = (
                         <ScrollArea type="always">
                             {/* Thumbnail */}
                             <div className="w-full flex flex-col items-center gap-2">
-                                <img
+                                {/* <img
                                     src={project.thumbnail}
+                                    alt={project.title}
+                                    className="w-full object-cover rounded-lg"
+                                /> */}
+                                <Image
+                                    src={project.thumbnail}
+                                    width={200}
+                                    height={200}
                                     alt={project.title}
                                     className="w-full object-cover rounded-lg"
                                 />

@@ -95,9 +95,14 @@ export const SkillsSection = ({ className }: { className?: string }) => {
     return (
         <Element name="skills" className="w-full">
             <section className={cn("min-h-screen p-3", className)} id="skills">
-                <div className="title">My Skills</div>
 
-                <div className="my-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-y-20 w-full p-4 items-start">
+                <div className="max-w-7xl mx-auto md:py-20 px-4 md:px-8 lg:px-10">
+                    <h2 className="text-2xl md:text-6xl mb-4 max-w-4xl">
+                        Skills
+                    </h2>
+                </div>
+
+                <div className="md:my-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-y-20 w-full p-4 items-start">
                     {
                         data.map(({ title, skills }, index) => (
                             <div key={`skill_section_${index}`} className="row-span-1 flex flex-col gap-5 items-center justify-center">

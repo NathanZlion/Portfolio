@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { FullscreenImageViewer } from "./fullscreen-image-viewer";
 import { Project } from "@/lib/projects";
+import Image from "next/image";
 import Markdown from 'react-markdown'
 
 
@@ -103,14 +104,20 @@ const CarouselComponent = ({ section }: sectionComponentProps<CarouselSection>) 
             >
                 <CarouselContent className="px-10 w-full">
                     {
-                        section.items.map(({ image, caption }, index) => (
+                        section.items.map(({ image, caption = "" }, index) => (
                             <CarouselItem
                                 key={index}
                                 className="basis-11/12 lg:basis-2/3 cursor-pointer"
                                 onClick={() => setSelectedImageIndex(index)}
                             >
                                 <div className="p-1 aspect-video w-auto">
-                                    <img src={image} alt={caption} className="w-fit aspect-video object-cover rounded-lg" />
+                                    <Image
+                                        src={image}
+                                        width={500}
+                                        height={500}
+                                        alt={caption}
+                                        className="w-fit aspect-video object-cover rounded-lg"
+                                    />
                                     <div className="text-center text-sm text-muted-foreground mt-2">{caption}</div>
                                 </div>
                             </CarouselItem>
