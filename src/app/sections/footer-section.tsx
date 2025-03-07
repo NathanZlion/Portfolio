@@ -12,6 +12,7 @@ import {
     IconNotebook,
     IconHeart,
     IconBrandLeetcode,
+    IconBrandUpwork,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -32,6 +33,11 @@ export const FooterSection = () => {
 
 
     const socials: { name: string, link: string, icon: JSX.Element }[] = [
+        {
+            icon: <IconBrandUpwork size={30} />,
+            name:"Upwork Profile",
+            link: "https://www.upwork.com/freelancers/~01667ab0c0d46185d5?viewMode=1",
+        },
         {
             icon: <IconBrandLinkedin size={30} />,
             name: "LinkedIn",
@@ -62,11 +68,11 @@ export const FooterSection = () => {
             name: "Leetcode",
             link: "https://leetcode.com/Nathan_Zlion/",
         },
-        {
-            icon: <IconCodeforce />,
-            name: "Codeforces",
-            link: "https://codeforces.com/profile/Nathan_D",
-        }
+        // {
+        //     icon: <IconCodeforce />,
+        //     name: "Codeforces",
+        //     link: "https://codeforces.com/profile/Nathan_D",
+        // }
     ];
 
     return (
