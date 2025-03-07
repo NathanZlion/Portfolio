@@ -16,7 +16,7 @@ import {
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
-import { IconMediumNew, IconCodeforce } from "@/components/icons/index"
+import { IconCodeforce, IconMediumNew } from "@/components/icons/index"
 
 
 export const FooterSection = () => {
@@ -35,7 +35,7 @@ export const FooterSection = () => {
     const socials: { name: string, link: string, icon: JSX.Element }[] = [
         {
             icon: <IconBrandUpwork size={30} />,
-            name:"Upwork Profile",
+            name: "Upwork Profile",
             link: "https://www.upwork.com/freelancers/~01667ab0c0d46185d5?viewMode=1",
         },
         {
@@ -48,11 +48,11 @@ export const FooterSection = () => {
             name: "GitHub",
             link: "https://github.com/NathanZlion/",
         },
-        {
-            icon: <IconBrandTelegram size={30} />,
-            name: "Telegram",
-            link: "https://t.me/NathanZGreat",
-        },
+        // {
+        //     icon: <IconBrandTelegram size={30} />,
+        //     name: "Telegram",
+        //     link: "https://t.me/NathanZGreat",
+        // },
         {
             icon: <IconMediumNew />,
             name: "Medium",
@@ -68,11 +68,11 @@ export const FooterSection = () => {
             name: "Leetcode",
             link: "https://leetcode.com/Nathan_Zlion/",
         },
-        // {
-        //     icon: <IconCodeforce />,
-        //     name: "Codeforces",
-        //     link: "https://codeforces.com/profile/Nathan_D",
-        // }
+        {
+            icon: <IconCodeforce />,
+            name: "Codeforces",
+            link: "https://codeforces.com/profile/Nathan_D",
+        }
     ];
 
     return (
@@ -82,7 +82,7 @@ export const FooterSection = () => {
 
                     {/* contact me CTA section*/}
                     <div className="rounded-md flex flex-col gap-5 h-full w-full ">
-                        <div className="text-lg md:text-3xl md:text-center text-wrap font-bold">Let's Work Together</div>
+                        <div className="text-lg md:text-3xl md:text-center text-wrap font-bold">Let&apos;s Work Together</div>
 
                         <div className="md:text-center md:text-xl">
                             Reach out to me!
@@ -173,7 +173,7 @@ export const FooterSection = () => {
                         <div className="flex items-center justify-start md:justify-center w-full text-nowrap">
                             <span className="inline font-semibold">
                                 Made with&nbsp;<IconHeart size={26} className="inline" />&nbsp;by&nbsp;
-                                <Link href={"https://github.com/NathanZlion/"} className="hover:underline">Natty</Link>
+                                <Link href={"https://github.com/NathanZlion/"} className="hover:underline" target="_blank">Natty</Link>
                             </span>
                         </div>
 

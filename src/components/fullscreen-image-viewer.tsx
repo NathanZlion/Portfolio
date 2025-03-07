@@ -120,7 +120,9 @@ export const FullscreenImageViewer = ({ src, onClose, onPrev, onNext }: Fullscre
                                 onClick={
                                     (e) => {
                                         e.stopPropagation();
-                                        onPrev && onPrev();
+                                        if (onPrev) {
+                                            onPrev();
+                                        }
                                     }
                                 }
                             >
@@ -157,7 +159,9 @@ export const FullscreenImageViewer = ({ src, onClose, onPrev, onNext }: Fullscre
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     controls.start({ x: 0, y: 0 });
-                                    onNext && onNext();
+                                    if (onNext) {
+                                        onNext();
+                                    }
                                 }}
                             >
                                 <IconChevronRight />

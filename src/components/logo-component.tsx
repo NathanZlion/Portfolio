@@ -20,11 +20,10 @@ const logoVariants = cva(
 export interface LogoProps
     extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof logoVariants> {
-    asChild?: boolean
 }
 
 const Logo = React.forwardRef<HTMLDivElement, LogoProps>(
-    ({ className, variant, asChild = false, ...props }, ref) => {
+    ({ className, variant, ...props }, ref) => {
         return (
             <header className={cn(logoVariants({ variant, className }))} ref={ref} {...props}>
                 <div className="flex items-center gap-2">

@@ -157,7 +157,7 @@ const CollisionMechanism = React.forwardRef<
         const animationInterval = setInterval(checkCollision, 50);
 
         return () => clearInterval(animationInterval);
-    }, [cycleCollisionDetected, containerRef]);
+    }, [cycleCollisionDetected, containerRef, parentRef]);
 
     useEffect(() => {
         if (collision.detected && collision.coordinates) {
@@ -173,8 +173,8 @@ const CollisionMechanism = React.forwardRef<
     }, [collision]);
 
     return (
-        <>
-            <motion.div
+        <div ref={ref}>
+            < motion.div
                 key={beamKey}
                 ref={beamRef}
                 animate="animate"
@@ -182,7 +182,8 @@ const CollisionMechanism = React.forwardRef<
                     translateY: beamOptions.initialY || "-200px",
                     translateX: beamOptions.initialX || "0px",
                     rotate: beamOptions.rotate || 0,
-                }}
+                }
+                }
                 variants={{
                     animate: {
                         translateY: beamOptions.translateY || "1800px",
@@ -198,10 +199,12 @@ const CollisionMechanism = React.forwardRef<
                     delay: beamOptions.delay || 0,
                     repeatDelay: beamOptions.repeatDelay || 0,
                 }}
-                className={cn(
-                    "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-foreground via-secondary to-transparent",
-                    beamOptions.className
-                )}
+                className={
+                    cn(
+                        "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-foreground via-secondary to-transparent",
+                        beamOptions.className
+                    )
+                }
             />
             <AnimatePresence>
                 {collision.detected && collision.coordinates && (
@@ -216,7 +219,7 @@ const CollisionMechanism = React.forwardRef<
                     />
                 )}
             </AnimatePresence>
-        </>
+        </div>
     );
 });
 

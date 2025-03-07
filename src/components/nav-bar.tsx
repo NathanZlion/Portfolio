@@ -34,7 +34,7 @@ export const NavBar = ({ className }: { className?: string }) => {
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [isMobile]);
+    }, [isMobile, SCROLL_SENSITIVITY]);
 
 
     const navItems: { name: string; link: string; icon: JSX.Element }[] = [

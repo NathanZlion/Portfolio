@@ -164,7 +164,7 @@ export const ProjectItem = (
                                     {
                                         project.tags?.map((tag, index) => (
                                             <Badge
-                                                key={`project_${project.id}_tags_${index}:section-detail`}
+                                                key={index}
                                                 className="bg-primary text-background mt-2"
                                             >
                                                 {tag}
@@ -193,8 +193,8 @@ export const ProjectItem = (
 
                                     {/* Links */}
                                     <div className="flex flex-wrap gap-2 my-4">
-                                        {project.links?.map((link) => (
-                                            <motion.div whileHover={{ scale: 1.05 }} >
+                                        {project.links?.map((link, index) => (
+                                            <motion.div whileHover={{ scale: 1.05 }} key={index}>
                                                 <Link
                                                     key={link.text}
                                                     href={link.url}
@@ -220,7 +220,7 @@ export const ProjectItem = (
                                     {project.details.sections?.map((section, index) => {
                                         const component = SectionComponents({ section, project, index, setOpen })
                                         return (
-                                            <>
+                                            <div key={index}>
                                                 {component}
 
                                                 {
@@ -228,7 +228,7 @@ export const ProjectItem = (
                                                     index < project.details.sections.length - 1 &&
                                                     <Separator orientation="horizontal" className="bg-primary/50" />
                                                 }
-                                            </>
+                                            </div>
                                         );
                                     })}
                                 </div >
