@@ -43,10 +43,10 @@ export const EducationSection = () => {
     return (
         <Element name="education" className="w-full">
             <section className="w-full">
-                <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
+                <div className="max-w-7xl mx-auto py-0 px-4 md:px-8 lg:px-10">
 
                     <div className="max-w-7xl mx-auto md:py-20 px-4 md:px-8 lg:px-10">
-                        <h2 className="text-2xl md:text-6xl mb-4 max-w-4xl">
+                        <h2 className="text-2xl md:text-6xl max-w-4xl">
                             Education
                         </h2>
                     </div>

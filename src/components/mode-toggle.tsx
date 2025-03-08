@@ -53,9 +53,9 @@ const ModeToggle = forwardRef<HTMLDivElement, ModeToggleProps>(
                     // Mobile: Show only icons
                     <div className="flex items-center justify-center w-full">
                         {isLight ? (
-                            <Sun className="text-yellow-500" size={24} />
+                            <Sun className="text-orange-500" size={24} />
                         ) : (
-                            <Moon className="text-blue-400" size={24} />
+                            <Moon className="text-blue-300" size={24} />
                         )}
                     </div>
                 ) : (
@@ -65,11 +65,11 @@ const ModeToggle = forwardRef<HTMLDivElement, ModeToggleProps>(
                         <span className="w-full text-center">Light</span>
                         <div
                             className={cn(
-                                "absolute w-1/2 h-full bg-white dark:bg-black rounded-full shadow-md flex items-center justify-center transition-transform duration-500 ease-in-out scale-95",
+                                "absolute w-1/2 h-full bg-white/50 rounded-full shadow-md flex items-center justify-center transition-transform duration-500 ease-in-out scale-95",
                                 isLight ? "translate-x-full scale-100" : "translate-x-0 scale-100"
                             )}
                         >
-                            <span className="text-black dark:text-white">
+                            <span>
                                 {isLight ? "Light" : "Dark"}
                             </span>
                         </div>

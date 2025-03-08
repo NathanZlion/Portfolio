@@ -14,8 +14,8 @@ export default function Home() {
       <NavBar />
       <HeroSection />
       <SkillsSection />
-      <ExperienceSection />
       <ProjectsSection />
+      <ExperienceSection />
       <EducationSection />
       <FooterSection />
     </div>

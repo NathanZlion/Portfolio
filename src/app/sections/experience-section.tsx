@@ -12,73 +12,9 @@ export const ExperienceSection = () => {
     const data: TimelineEntry[] = [
         {
             title: {
-                company: "Upwork",
-                role: "Full Stack Developer",
-                duration: "Jul 2024 - Aug 2024",
-                location: "Nigeria - Remote"
-            },
-            content: (
-                <div>
-                    <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-lg font-normal mb-8">
-                        Developed AI Humanizer, a platform that transforms AI-generated text into humanized content.
-                    </p>
-                    <ul className="list-disc pl-5 text-neutral-800 dark:text-neutral-200 text-xs md:text-base">
-                        <li>Designed and implemented authentication and rate limiting.</li>
-                        <li>Integrated advanced AI text transformation models.</li>
-                        <li>Built a responsive frontend with React.js and managing state with React Query.</li>
-                        <li>Implemented a referral feature,</li>
-                        <li>Integrated
-
-                            {" "}
-                            <LinkPreview
-                                url="https://paystack.com/"
-                                className="font-bold no-underline"
-                                target="_blank"
-                            >
-                                <IconLink className="inline" />
-                                Paystack
-                            </LinkPreview>
-                            {" "}
-                            payment ensuring secure transactions.</li>
-                        <li> Earned 5 star
-                            {" "}
-                            {[...Array(5)].map((_, i) => (
-                                <IconStar key={i} className="inline" />
-                            ))}
-                            {" "}
-                            rating by doing an exceptional work and great communication.
-                        </li>
-                    </ul>
-
-                    {/* Include 5 star review */}
-                </div>
-            ),
-        },
-        {
-            title: {
-                company: "School of Information Technology and Engineering",
-                role: "Full Stack Software Engineer | Intern",
-                location: "Addis Ababa, Ethiopia - Hybrid",
-                duration: "Feb 2024 - Jun 2024",
-            },
-            content: (
-                <div>
-                    <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-lg font-normal mb-8">
-                        Developed and tested full-stack application using modern frameworks.
-                    </p>
-                    <ul className="list-disc pl-5 text-neutral-800 dark:text-neutral-200 text-xs md:text-base">
-                        <li> Integrated new features for ORDMS administrative management system using <span className="font-bold">Angular</span> and <span className="font-bold">ASP.NET Core</span>,
-                            improving application functionality.</li>
-                        <li> Enhanced system reliability by writing End-to-End tests using Playwright leading in the discovery of 2 bugs</li>
-                        <li> Resolved a critical backend bug by refactoring QR and Barcode generation to work on Linux environment, leading to the fix of a system breaking bug.</li>
-                    </ul>
-                </div>
-            ),
-        },
-        {
-            title: {
                 company: "A2SV | Africa to Silicon Valley",
                 role: "Head of Community Education",
+                website: "https://a2sv.org/",
                 location: "Addis Ababa, Ethiopia - Inperson",
                 duration: "Jan 2024 - Nov 2024",
             },
@@ -154,7 +90,73 @@ export const ExperienceSection = () => {
                     </div>
                 </div>
             ),
-        }, {
+        },
+        {
+            title: {
+                company: "Upwork",
+                role: "Full Stack Developer",
+                duration: "Jul 2024 - Aug 2024",
+                location: "Nigeria - Remote"
+            },
+            content: (
+                <div>
+                    <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-lg font-normal mb-8">
+                        Developed AI Humanizer, a platform that transforms AI-generated text into humanized content.
+                    </p>
+                    <ul className="list-disc pl-5 text-neutral-800 dark:text-neutral-200 text-xs md:text-base">
+                        <li>Designed and implemented authentication and rate limiting.</li>
+                        <li>Integrated advanced AI text transformation models.</li>
+                        <li>Built a responsive frontend with React.js and managing state with React Query.</li>
+                        <li>Implemented a referral feature,</li>
+                        <li>Integrated
+
+                            {" "}
+                            <LinkPreview
+                                url="https://paystack.com/"
+                                className="font-bold no-underline"
+                                target="_blank"
+                            >
+                                <IconLink className="inline" />
+                                Paystack
+                            </LinkPreview>
+                            {" "}
+                            payment ensuring secure transactions.</li>
+                        <li> Earned 5 star
+                            {" "}
+                            {[...Array(5)].map((_, i) => (
+                                <IconStar key={i} className="inline" />
+                            ))}
+                            {" "}
+                            rating by doing an exceptional work and great communication.
+                        </li>
+                    </ul>
+
+                    {/* Include 5 star review */}
+                </div>
+            ),
+        },
+        {
+            title: {
+                company: "School of Information Technology and Engineering",
+                role: "Full Stack Software Engineer | Intern",
+                location: "Addis Ababa, Ethiopia - Hybrid",
+                duration: "Feb 2024 - Jun 2024",
+            },
+            content: (
+                <div>
+                    <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-lg font-normal mb-8">
+                        Developed and tested full-stack application using modern frameworks.
+                    </p>
+                    <ul className="list-disc pl-5 text-neutral-800 dark:text-neutral-200 text-xs md:text-base">
+                        <li> Integrated new features for ORDMS administrative management system using <span className="font-bold">Angular</span> and <span className="font-bold">ASP.NET Core</span>,
+                            improving application functionality.</li>
+                        <li> Enhanced system reliability by writing End-to-End tests using Playwright leading in the discovery of 2 bugs</li>
+                        <li> Resolved a critical backend bug by refactoring QR and Barcode generation to work on Linux environment, leading to the fix of a system breaking bug.</li>
+                    </ul>
+                </div>
+            ),
+        },
+        {
             title: {
                 company: "Eskalate",
                 website: "https://www.eskalate.io",
@@ -179,8 +181,8 @@ export const ExperienceSection = () => {
 
     return (
         <Element name="experience">
-            <div className="max-w-7xl mx-auto md:py-20 px-4 md:px-8 lg:px-10">
-                <h2 className="text-2xl md:text-6xl mb-4 max-w-4xl">
+            <div className="max-w-7xl mx-auto md:py-10 px-4 md:px-8 lg:px-10">
+                <h2 className="text-2xl md:text-6xl max-w-4xl">
                     Experience
                 </h2>
             </div>
