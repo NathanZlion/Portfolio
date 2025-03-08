@@ -58,14 +58,16 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                                 <div className="h-4 w-4 rounded-full bg-accent/75 border border-accent/90 p-2" />
                             </div>
                             <div className="hidden md:block md:pl-20">
-                                <h3 className="text-xl md:text-3xl font-bold">
+                                <h3 className="text-xl md:text-3xl font-bold ">
                                     {
                                         item.title.website ? (
-                                            <LinkPreview url={item.title.website} className="font-bold no-underline">
+                                            <LinkPreview url={item.title.website} className="font-bold underline dark:text-gradient">
                                                 {item.title.company}
                                             </LinkPreview>
                                         ) :
-                                            item.title.company
+                                            <span className="dark:text-gradient">
+                                                {item.title.company}
+                                            </span>
                                     }
                                 </h3>
                                 <p className="text-lg md:text-xl text-neutral-900 dark:text-neutral-200">
@@ -88,11 +90,13 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                                 <h3 className="text-2xl font-bold">
                                     {
                                         item.title.website ? (
-                                            <LinkPreview url={item.title.website} className="font-bold no-underline">
+                                            <LinkPreview url={item.title.website} className="font-bold underline dark:text-gradient">
                                                 {item.title.company}
                                             </LinkPreview>
                                         ) :
-                                            item.title.company
+                                            <span className="dark:text-gradient">
+                                                {item.title.company}
+                                            </span>
                                     }
                                 </h3>
                                 <p className="text-lg text-neutral-900 dark:text-neutral-200">

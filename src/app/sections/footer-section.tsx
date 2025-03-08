@@ -77,7 +77,7 @@ export const FooterSection = () => {
 
     return (
         <div className="flex flex-col gap-2 mb-14 md:m-0 ">
-            <footer className="h-fit w-full p-3 bg-card/70 invert rounded-lg" >
+            <footer className="h-fit w-full p-3 bg-card/90 invert rounded-lg" >
                 <section className="grid md:grid-cols-2 gap-10 p-2 md:p-10">
 
                     {/* contact me CTA section*/}

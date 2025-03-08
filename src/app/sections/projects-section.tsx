@@ -11,8 +11,8 @@ export const ProjectsSection = ({ className }: { className?: string }) => {
     return (
         <Element name="projects">
             <section className={cn("min-h-screen w-full p-3 scroll-smooth", className)} >
-                <div className="max-w-7xl mx-auto md:py-20 px-4 md:px-8 lg:px-10">
-                    <h2 className="text-2xl md:text-6xl mb-4 max-w-4xl">
+                <div className="max-w-7xl mx-auto md:py-3 px-4 md:px-8 lg:px-10">
+                    <h2 className="text-2xl md:text-6xl max-w-4xl">
                         Projects
                     </h2>
                 </div>

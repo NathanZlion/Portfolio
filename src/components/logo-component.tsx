@@ -27,7 +27,7 @@ const Logo = React.forwardRef<HTMLDivElement, LogoProps>(
         return (
             <header className={cn(logoVariants({ variant, className }))} ref={ref} {...props}>
                 <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold font-dotGothic bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500">
+                    <span className="text-2xl font-bold font-dotGothic bg-clip-text text-transparent bg-gradient-to-r from-chart-1 to-chart-2">
                         &lt;Nath /&gt;
                     </span>
                 </div>
