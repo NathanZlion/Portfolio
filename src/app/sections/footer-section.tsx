@@ -77,7 +77,7 @@ export const FooterSection = () => {
 
     return (
         <div className="flex flex-col gap-2 mb-14 md:m-0 ">
-            <footer className="h-fit w-full p-3 bg-card/90 invert rounded-lg" >
+            <footer className="h-fit w-full p-5 bg-card/90 invert rounded-lg" >
                 <section className="grid md:grid-cols-2 gap-10 p-2 md:p-10">
 
                     {/* contact me CTA section*/}
@@ -88,12 +88,12 @@ export const FooterSection = () => {
                             Reach out to me!
                         </div>
 
-                        <div className="flex flex-col md:flex-row justify-center gap-10">
-                            <div className="p-2 px-4 flex justify-around gap-2 items-center outline-dashed outline-2 cursor-auto rounded w-full md:w-fit">
+                        <div className="flex flex-col lg:flex-row justify-center gap-10">
+                            <div className="lg:p-2 lg:px-4 flex flex-col lg:flex-row justify-around gap-4 lg:gap-2 items-center lg:outline-dashed outline-2 cursor-auto rounded w-full lg:w-fit">
 
                                 {/* send email */}
                                 <Tooltip>
-                                    <TooltipTrigger>
+                                    <TooltipTrigger className="max-lg:p-2 rounded-sm max-lg:outline-dotted max-lg:outline-2 w-full">
                                         <Link
                                             className="flex justify-center gap-2 items-center"
                                             href={`mailto:${EMAIL}`}
@@ -101,7 +101,7 @@ export const FooterSection = () => {
                                             rel={"noopener noreferrer"}
                                         >
                                             <IconMail size={26} />
-                                            <span> Email </span>
+                                            <span className="text-nowrap">Send Email </span>
                                         </Link>
                                     </TooltipTrigger>
                                     <TooltipContent>
@@ -109,17 +109,20 @@ export const FooterSection = () => {
                                     </TooltipContent>
                                 </Tooltip>
 
-                                <Separator className="invert" orientation={"vertical"} />
+                                <Separator className="hidden invert mx-3 lg:inline-block" orientation={"vertical"} />
 
                                 {/* copy email */}
                                 <Tooltip open={copied || hoveredCopy} delayDuration={0}>
                                     <TooltipTrigger
                                         onClick={handleCopy}
-                                        className="cursor-pointer"
+                                        className="cursor-pointer flex justify-center gap-3 items-center w-full max-lg:outline-dotted max-lg:outline-2 max-lg:p-2 rounded-sm"
                                         onMouseEnter={() => setHoveredCopy(true)}
                                         onMouseLeave={() => setHoveredCopy(false)}
                                     >
+
+                                        {/* <IconMail size={26} /> */}
                                         {copied ? <IconCheck size={26} /> : <IconCopy size={26} />}
+                                        <span className="text-nowrap"> Copy Email </span>
                                     </TooltipTrigger>
                                     <TooltipContent>
                                         {copied ? "Copied!" : "Copy Email"}
@@ -132,8 +135,7 @@ export const FooterSection = () => {
                                 <TooltipTrigger className="cursor-pointer">
                                     <Link
                                         className=
-                                        // "flex justify-center gap-2 items-center"
-                                        "p-2 px-4 flex justify-center gap-2 items-center rounded outline-dotted outline-2 w-full"
+                                        "p-4 px-6 flex justify-center gap-2 items-center rounded outline-dashed max-lg:outline-dotted outline-2 w-full"
                                         href={`mailto:${EMAIL}`}
                                         target={"_blank"}
                                         rel={"noopener noreferrer"}
