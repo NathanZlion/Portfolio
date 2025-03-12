@@ -5,16 +5,26 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+type education = {
+    level: string;
+    school: string;
+    time: string;
+    achievements?: string[];
+    ongoing?: boolean;
+}
 
 export const EducationSection = () => {
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const education = [
+    const education: education[] = [
         {
             level: "BSc Degree",
             school: "Addis Ababa University, Addis Ababa Institute of Technology",
             time: "July 2020 - July 2025 (Expected)",
             achievements: ["Pursuing BSc in Software Engineering, in AI Stream."],
+            ongoing: true,
         },
         {
             level: "DSA Training",
@@ -51,22 +61,10 @@ export const EducationSection = () => {
                         </h2>
                     </div>
 
-                    {/* BSc Degree (Always Visible) */}
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="border-l-4 border-gray-300 pl-4 mt-6"
-                    >
-                        <h3 className="text-xl font-semibold">{education[0].level}</h3>
-                        <p className="text-gray-600">{education[0].school}</p>
-                        <p className="text-gray-400 text-sm">{education[0].time}</p>
-                        <ul className="list-disc list-inside mt-2 text-gray-500">
-                            {education[0].achievements?.map((ach, i) => (
-                                <li key={i}>{ach}</li>
-                            ))}
-                        </ul>
-                    </motion.div>
+                    {EducationList(
+                        education.filter(edu => edu.ongoing),
+                        "border-l-8 border-green-300 pl-7 mt-6"
+                    )}
 
                     {/* Collapsible Section */}
                     <AnimatePresence>
@@ -78,27 +76,11 @@ export const EducationSection = () => {
                                 transition={{ duration: 0.4, ease: "easeInOut" }}
                                 className="overflow-hidden mt-4 space-y-6"
                             >
-                                {education.slice(1).map((edu, index) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                                        className="border-l-4 border-gray-300 pl-4"
-                                    >
-                                        <h3 className="text-xl font-semibold">{edu.level}</h3>
-                                        <p className="text-gray-600">{edu.school}</p>
-                                        <p className="text-gray-400 text-sm">{edu.time}</p>
-                                        {edu.achievements && (
-                                            <ul className="list-disc list-inside mt-2 text-gray-500">
-                                                {edu.achievements.map((ach, i) => (
-                                                    <li key={i}>{ach}</li>
-                                                ))}
-                                            </ul>
-                                        )}
-                                    </motion.div>
-                                ))}
+
+                                {EducationList(
+                                    education.filter(edu => !edu.ongoing),
+                                    "border-l-4 border-gray-300 pl-4"
+                                )}
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -123,3 +105,29 @@ export const EducationSection = () => {
         </Element>
     );
 };
+
+
+const EducationList = (education: education[], className?: string) => {
+    console.log(education)
+    return education.map((edu, index) => (
+        <motion.div
+            key={index}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+            className={cn("border-l-4 border-gray-300 pl-4", className)}
+        >
+            <h3 className="text-xl font-semibold">{edu.level}</h3>
+            <p className="">{edu.school}</p>
+            <p className="text-muted-foreground text-sm">{edu.time}</p>
+            {edu.achievements && (
+                <ul className="list-disc list-inside mt-2 text-gray-500">
+                    {edu.achievements.map((ach, i) => (
+                        <li key={i}>{ach}</li>
+                    ))}
+                </ul>
+            )}
+        </motion.div>
+    ))
+}

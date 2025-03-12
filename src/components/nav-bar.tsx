@@ -49,14 +49,14 @@ export const NavBar = ({ className }: { className?: string }) => {
             icon: <CodeIcon size={28} />,
         },
         {
-            name: "Experience",
-            link: "experience",
-            icon: <GemIcon size={28} />,
-        },
-        {
             name: "Projects",
             link: "projects",
             icon: <ConstructionIcon size={28} />,
+        },
+        {
+            name: "Experience",
+            link: "experience",
+            icon: <GemIcon size={28} />,
         },
         {
             name: "Education",
