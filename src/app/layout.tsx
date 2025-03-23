@@ -19,14 +19,6 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const dotGothic16 = localFont(
-  {
-    src: "./fonts/DotGothic16-Regular.ttf",
-    variable: "--font-dot-gothic",
-    weight: "400",
-  }
-)
-
 const AzeretMono = localFont(
   {
     src: [
@@ -47,6 +39,7 @@ export const metadata: Metadata = {
   title: "Nathnael Dereje Portfolio",
   description: "Nathnael Dereje Portfolio Website",
   keywords: ["Software Engineer"]
+
 };
 
 export default function RootLayout({
@@ -57,7 +50,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${AzeretMono.variable} ${dotGothic16.variable} font-azeretMono antialiased`}
+        className={`
+        ${geistSans.variable}
+        ${geistMono.variable}
+        ${AzeretMono.variable}
+        font-azeretMono
+        antialiased`}
       >
 
         {/* cursor animation */}

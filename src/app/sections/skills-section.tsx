@@ -94,7 +94,7 @@ export const SkillsSection = ({ className }: { className?: string }) => {
         ]
 
     return (
-        <Element name="skills" className="w-full">
+        <Element name="skills" className="w-full pt-10">
             <section className={cn("min-h-screen p-3", className)} id="skills">
 
                 <div className="max-w-7xl mx-auto md:py-20 px-4 md:px-8 lg:px-10">

@@ -65,7 +65,7 @@ const ModeToggle = forwardRef<HTMLDivElement, ModeToggleProps>(
                         <span className="w-full text-center">Light</span>
                         <div
                             className={cn(
-                                "absolute w-1/2 h-full bg-white/50 rounded-full shadow-md flex items-center justify-center transition-transform duration-500 ease-in-out scale-95",
+                                "absolute w-1/2 h-full bg-white/30 rounded-full shadow-lg flex items-center justify-center transition-transform duration-500 ease-in-out scale-95",
                                 isLight ? "translate-x-full scale-100" : "translate-x-0 scale-100"
                             )}
                         >

@@ -21,6 +21,7 @@ export default function NotFound() {
             <Button
                 variant={"outline"}
                 className="shadow-lg"
+                aria-label="Back to home"
                 onClick={() => window.location.replace("/")}
             >
                 <IconHome />

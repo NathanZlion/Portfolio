@@ -362,21 +362,5 @@ export const projects: Project[] = [
         ],
         tags: ["Google AppScript", "React", "CronJob"],
         details: { sections: [] }
-    },
-
-    // {
-    //     id: "8",
-    //     title: "Pocker Game",
-    //     description: "A web application that aggregates news from multiple sources.",
-    //     thumbnail: "/infoblender_thumbnail.png",
-    //     links: [
-    //         {
-    //             icon: <IconBrandGithub />,
-    //             text: "Github",
-    //             url: "https://github.com/NathanZlion/Info_Blend"
-    //         }
-    //     ],
-    //     tags: ["React", "NodeJS", "Express", "MongoDB"],
-    // details: { sections: [ ] }
-    // },
+    }
 ]

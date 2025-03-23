@@ -137,8 +137,8 @@ const CarouselComponent = ({ section }: sectionComponentProps<CarouselSection>) 
                     onClose={() => setSelectedImageIndex(-1)}
                     onPrev={() => setSelectedImageIndex((prev) => (prev - 1 + section.items.length) % section.items.length)}
                     onNext={() => setSelectedImageIndex((prev) => (prev + 1) % section.items.length)}
-                />}
-            {/* constraintsRef={constraintsRef} */}
+                />
+            }
         </motion.div >
     );
 }

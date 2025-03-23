@@ -184,7 +184,7 @@ export const FooterSection = () => {
             </footer>
 
             {/* copy right claim */}
-            <section className="text-xs font-dotGothic text-center md:text-start">
+            <section className="text-xs text-center md:text-start">
                 &copy; {new Date().getFullYear()} Nathnael Dereje. All rights reserved.
             </section>
         </div>

@@ -51,7 +51,7 @@ export const EducationSection = () => {
     ];
 
     return (
-        <Element name="education" className="w-full">
+        <Element name="education" className="w-full pt-10">
             <section className="w-full">
                 <div className="max-w-7xl mx-auto py-0 px-4 md:px-8 lg:px-10">
 
@@ -88,6 +88,7 @@ export const EducationSection = () => {
                     {/* Toggle Button */}
                     <Button
                         variant={"outline"}
+                        aria-label="Show More or Show Less"
                         onClick={() => setIsExpanded(!isExpanded)}
                         className="mt-6 flex items-center font-medium hover:underline"
                     >
@@ -108,7 +109,6 @@ export const EducationSection = () => {
 
 
 const EducationList = (education: education[], className?: string) => {
-    console.log(education)
     return education.map((edu, index) => (
         <motion.div
             key={index}
