@@ -37,9 +37,40 @@ const AzeretMono = localFont(
 
 export const metadata: Metadata = {
   title: "Nathnael Dereje Portfolio",
-  description: "Nathnael Dereje Portfolio Website",
-  keywords: ["Software Engineer"]
-
+  generator: "Nathnael Dereje",
+  description: "Nathnael Dereje's Portfolio Website",
+  metadataBase: new URL('https://nathnael-dereje.vercel.app/'),
+  keywords: [
+    "Software Engineer", "fullstack developer", "web developer", "programmer", "problem solver",
+    "nathnael dereje", "freelancer"
+  ],
+  authors: [
+    {
+      name: "Nathnael Dereje",
+      url: "https://nathnael-dereje.vercel.app/"
+    }
+  ],
+  creator: "Nathnael Dereje",
+  openGraph: {
+    title: "Nathnael Dereje",
+    description: "Nathnael Dereje, Software Engineer",
+    siteName: "AlgoEspresso",
+    images: [
+      {
+        url: "/logo.png",
+        alt: "Nathnael Dereje",
+        width: 600,
+        height: 600,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+    url: "https://nathnael-dereje.vercel.app/",
+  },
+  robots: {
+    index: true,
+    follow: true
+  },
 };
 
 export default function RootLayout({
