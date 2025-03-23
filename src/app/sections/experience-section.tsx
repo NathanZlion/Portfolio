@@ -180,7 +180,7 @@ export const ExperienceSection = () => {
 
 
     return (
-        <Element name="experience">
+        <Element name="experience" className="w-full pt-10">
             <div className="max-w-7xl mx-auto md:py-10 px-4 md:px-8 lg:px-10">
                 <h2 className="text-2xl md:text-6xl max-w-4xl">
                     Experience

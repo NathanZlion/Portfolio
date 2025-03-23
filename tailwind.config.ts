@@ -57,7 +57,6 @@ const config: Config = {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				dotGothic: ['var(--font-dot-gothic)'],
 				azeretMono: ['var(--font-azeret-mono)']
 			}
 		}

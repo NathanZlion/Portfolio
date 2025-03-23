@@ -76,6 +76,7 @@ export const FullscreenImageViewer = ({ src, onClose, onPrev, onNext }: Fullscre
                 >
 
                     <Button
+                        aria-label="Close"
                         className="invert fixed rounded-full p-2 top-4 right-4"
                         onClick={(e) => { e.stopPropagation(); onClose(); }}
                     >
@@ -116,6 +117,7 @@ export const FullscreenImageViewer = ({ src, onClose, onPrev, onNext }: Fullscre
 
                             <Button
                                 className="rounded-full"
+                                aria-label="Previous"
                                 disabled={!onPrev}
                                 onClick={
                                     (e) => {
@@ -130,6 +132,7 @@ export const FullscreenImageViewer = ({ src, onClose, onPrev, onNext }: Fullscre
                             </Button>
 
                             <Button
+                                aria-label="Zoom In"
                                 className="rounded-full p-2"
                                 onClick={(e) => { e.stopPropagation(); setScale(prev => Math.min(prev + 0.2, 3)); }}
                             >
@@ -137,6 +140,7 @@ export const FullscreenImageViewer = ({ src, onClose, onPrev, onNext }: Fullscre
                             </Button>
                             <Button
                                 className="rounded-full p-2"
+                                aria-label="Zoom Out"
                                 onClick={(e) => { e.stopPropagation(); setScale(prev => Math.max(prev - 0.2, 0.5)); }}
                             >
                                 <IconZoomOut />
@@ -144,6 +148,7 @@ export const FullscreenImageViewer = ({ src, onClose, onPrev, onNext }: Fullscre
 
                             <Button
                                 className="rounded-full p-2"
+                                aria-label="Reset Zoom"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     controls.start({ x: 0, y: 0 });
@@ -155,6 +160,7 @@ export const FullscreenImageViewer = ({ src, onClose, onPrev, onNext }: Fullscre
 
                             <Button
                                 className="rounded-full"
+                                aria-label="Next"
                                 disabled={!onNext}
                                 onClick={(e) => {
                                     e.stopPropagation();

@@ -6,6 +6,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { Logo } from "../components/logo-component";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import FollowingCursor from "@/components/following-cursor";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,14 +19,6 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
-const dotGothic16 = localFont(
-  {
-    src: "./fonts/DotGothic16-Regular.ttf",
-    variable: "--font-dot-gothic",
-    weight: "400",
-  }
-)
 
 const AzeretMono = localFont(
   {
@@ -45,8 +38,40 @@ const AzeretMono = localFont(
 
 export const metadata: Metadata = {
   title: "Nathnael Dereje Portfolio",
-  description: "Nathnael Dereje Portfolio Website",
-  keywords: ["Software Engineer"]
+  generator: "Nathnael Dereje",
+  description: "Nathnael Dereje's Portfolio Website",
+  metadataBase: new URL('https://nathnael-dereje.vercel.app/'),
+  keywords: [
+    "Software Engineer", "fullstack developer", "web developer", "programmer", "problem solver",
+    "nathnael dereje", "freelancer"
+  ],
+  authors: [
+    {
+      name: "Nathnael Dereje",
+      url: "https://nathnael-dereje.vercel.app/"
+    }
+  ],
+  creator: "Nathnael Dereje",
+  openGraph: {
+    title: "Nathnael Dereje",
+    description: "Nathnael Dereje, Software Engineer",
+    siteName: "AlgoEspresso",
+    images: [
+      {
+        url: "/logo.png",
+        alt: "Nathnael Dereje",
+        width: 600,
+        height: 600,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+    url: "https://nathnael-dereje.vercel.app/",
+  },
+  robots: {
+    index: true,
+    follow: true
+  },
 };
 
 export default function RootLayout({
@@ -57,11 +82,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${AzeretMono.variable} ${dotGothic16.variable} font-azeretMono antialiased`}
+        className={`
+        ${geistSans.variable}
+        ${geistMono.variable}
+        ${AzeretMono.variable}
+        font-azeretMono
+        antialiased`}
       >
 
         {/* cursor animation */}
         <FollowingCursor />
+
+        {/* analytics collector for vercel */}
+        <Analytics />
 
         <ThemeProvider
           attribute="class"

@@ -53,7 +53,6 @@ export const ProjectItem = (
                 <DrawerPortal >
                     <DrawerOverlay />
 
-                    {/* <ScrollArea className="h-screen w-48 rounded-md border outline outline-green-400 bg-green-300"> */}
                     <DrawerContent className="p-4 h-[85vh] flex flex-col">
                         <DrawerHeader >
                             <DrawerTitle className="text-xl font-bold">{project.title}</DrawerTitle>
@@ -65,11 +64,6 @@ export const ProjectItem = (
                         <ScrollArea type="always">
                             {/* Thumbnail */}
                             <div className="w-full flex flex-col items-center gap-2">
-                                {/* <img
-                                    src={project.thumbnail}
-                                    alt={project.title}
-                                    className="w-full object-cover rounded-lg"
-                                /> */}
                                 <Image
                                     src={project.thumbnail}
                                     width={200}
@@ -121,15 +115,16 @@ export const ProjectItem = (
 
                         <DrawerFooter className="flex items-end">
                             <DrawerClose>
-                                <Button>
+                                <Button
+                                    variant="outline"
+                                    aria-label="Close"
+                                >
                                     <IconMinimize />
                                 </Button>
                             </DrawerClose>
                         </DrawerFooter>
 
                     </DrawerContent>
-                    {/* <ScrollBar /> */}
-                    {/* </ScrollArea> */}
                 </DrawerPortal>
             </Drawer>
         );

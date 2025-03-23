@@ -21,7 +21,7 @@ export const HeroSection = ({ className }: { className?: string }) => {
                     )}
                 >
                     <div className="relative z-10 text-center flex flex-col gap-5">
-                        <h1 className="text-2xl md:text-8xl font-bold font-dotGothic text-gradient">
+                        <h1 className="text-6xl md:text-8xl font-bold  text-gradient">
                             Nathnael Dereje
                         </h1>
                         <p className="mt-3 text-lg sm:text-xl font-medium">
