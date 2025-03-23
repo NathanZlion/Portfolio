@@ -6,6 +6,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { Logo } from "../components/logo-component";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import FollowingCursor from "@/components/following-cursor";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -91,6 +92,9 @@ export default function RootLayout({
 
         {/* cursor animation */}
         <FollowingCursor />
+
+        {/* analytics collector for vercel */}
+        <Analytics />
 
         <ThemeProvider
           attribute="class"
