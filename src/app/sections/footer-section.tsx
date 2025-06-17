@@ -56,7 +56,7 @@ export const FooterSection = () => {
         {
             icon: <IconMediumNew />,
             name: "Medium",
-            link: "https://nathanzlion.medium.com/",
+            link: "https://medium.com/@nathandere1357",
         },
         {
             icon: <IconNotebook size={30} />,
