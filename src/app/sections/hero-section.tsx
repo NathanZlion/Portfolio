@@ -9,7 +9,7 @@ import { Element } from "react-scroll";
 export const HeroSection = ({ className }: { className?: string }) => {
     return (
 
-        <Element name="hero" className="w-full">
+        <Element name="hero" className="w-full overflow-hidden">
             <BackgroundBeamsWithCollision
                 className="bg-transparent h-[85vh] w-full border-b-2 border-gray-400 overflow-x-clip overflow-y-visible"
                 key={"hero-section"}
