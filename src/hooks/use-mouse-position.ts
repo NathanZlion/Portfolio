@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 export default function useMousePosition() {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [position, setPosition] = useState({ x: -30, y: -30 });
 
     useEffect(() => {
         const moveCursor = (e: MouseEvent) => {
