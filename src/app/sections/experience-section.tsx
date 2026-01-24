@@ -3,13 +3,25 @@
 import Image from "next/image";
 import React from "react";
 import { Timeline, TimelineEntry } from "@/components/ui/timeline";
-import { IconHash, IconLink, IconStar } from "@tabler/icons-react";
+import { IconBrandAws, IconHash, IconLink, IconStar, IconMoodSmile } from "@tabler/icons-react";
 import { Separator } from "@/components/ui/separator";
 import { LinkPreview } from "@/components/ui/link-preview";
 import { Element } from 'react-scroll';
 
 export const ExperienceSection = () => {
     const data: TimelineEntry[] = [
+        {
+            title: {
+                company: "Amazon Web Services",
+                role: "Front-end Engineer",
+                website: "https://cloudscape.design/",
+                duration: "October 2025 - Present",
+                location: "Berlin, Germany 🇩🇪 🥨"
+            },
+            content: (<>
+                Currently working as a Front-end Engineer @ <span><IconBrandAws className="inline"/></span> <IconMoodSmile className="inline"/>
+            </>)
+        },
         {
             title: {
                 company: "A2SV | Africa to Silicon Valley",

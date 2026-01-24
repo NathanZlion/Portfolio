@@ -12,9 +12,9 @@ export default function Home() {
     <div className="flex flex-col items-center justify-items-center min-h-screen p-4 pb-10 sm:p-20 gap-5 md:gap-10">
       <NavBar />
       <HeroSection />
+      <ExperienceSection />
       <SkillsSection />
       <ProjectsSection />
-      <ExperienceSection />
       <EducationSection />
       <FooterSection />
     </div>

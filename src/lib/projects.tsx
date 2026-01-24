@@ -329,7 +329,7 @@ export const projects: Project[] = [
         title: "Qismati",
         description: "A Muslim dating app that helps users find their life partners.",
         tags: ["Flutter", "Firebase", "Payment Integration"],
-        time: "January 2023 - Present [ongoing]",
+        time: "January 2023 - June 2023",
         links: [],
         details: {}
     },
