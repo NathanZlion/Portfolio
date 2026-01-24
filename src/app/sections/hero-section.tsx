@@ -25,14 +25,14 @@ export const HeroSection = ({ className }: { className?: string }) => {
                             Nathnael Dereje
                         </h1>
                         <p className="mt-3 text-lg sm:text-xl font-medium">
-                            Software Engineer, Full Stack Developer, Mobile App Developer
+                            Software Engineer
                         </p>
                     </div>
 
                     {/* scroll down */}
-                    <div className="absolute bottom-4 right-0">
+                    <div className="absolute bottom-4 right-0 w-5">
                         <DotLottieReact
-                            src="https://lottie.host/82628605-0013-4c3b-895f-eeb91856e7b4/vUS0Q1IfjL.json"
+                            src="/scroll-down-lottie.json"
                             className="dark:invert"
                             loop
                             autoplay
