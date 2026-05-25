@@ -61,7 +61,7 @@ export const FooterSection = () => {
         {
             icon: <IconNotebook size={30} />,
             name: "Blog",
-            link: "https://blog.nathbuild.io/",
+            link: "https://blog.nathbuilt.dev/",
         },
         {
             icon: <IconBrandLeetcode size={30} />,
