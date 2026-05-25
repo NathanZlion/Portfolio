@@ -66,7 +66,7 @@ export const FooterSection = () => {
         {
             icon: <IconBrandLeetcode size={30} />,
             name: "Leetcode",
-            link: "https://leetcode.com/Nathan_Zlion/",
+            link: "https://leetcode.com/u/Nathan_Zlion/",
         },
         {
             icon: <IconCodeforce />,
