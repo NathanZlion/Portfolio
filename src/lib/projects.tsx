@@ -282,7 +282,7 @@ export const projects: Project[] = [
             {
                 icon: <IconArticle />,
                 text: "Blog",
-                url: "https://nathanzlion.github.io/categories/algoespresso/"
+                url: "https://blog.nathbuilt.dev/categories/algoespresso/"
             }
         ],
         details: {
